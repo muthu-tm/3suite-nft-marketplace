@@ -96,11 +96,12 @@ ul.nav-list {
   line-height: 22px;
 }
 .logo{
-  background: linear-gradient(to right, #CE00E6, #E7009C );
+  /* background: linear-gradient(to right, #CE00E6, #E7009C );
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
   font-weight: 800;
   font-size: 24px;
+  color: #CBCCD1;
 }
 .gradient-popup-text{
   /* background: linear-gradient(to right, #CE00E6, #E7009C );

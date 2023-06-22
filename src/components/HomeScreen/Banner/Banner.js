@@ -1,0 +1,56 @@
+import React from "react";
+import "./banner.css";
+import HomeImage from "../../../assets/images/home1.png";
+import { MdRocketLaunch } from "react-icons/md";
+import { BsSendPlusFill } from "react-icons/bs";
+import { IconContext } from "react-icons";
+
+function Banner(props) {
+  return (
+    <div className="banner-screen">
+      <div className="home-left">
+        <div className="heading">Unlock Your </div>
+        <div className="heading-span"> Digital Creativity, </div>
+        <div className="heading">Embrace NFTs Today!</div>
+        <div className="description">
+          NFT Marketplace | Unlock Your Digital Creativity, Embrace NFTs Today!
+        </div>
+        <div className="cta-home">
+          <div className="action-cta">
+            <IconContext.Provider
+              value={{
+                size: "1em",
+                color: "#fff",
+                className: "global-class-name",
+              }}
+            >
+              <div>
+                <MdRocketLaunch />
+              </div>
+            </IconContext.Provider>
+            <div className="cta-text">Explore</div>
+          </div>
+          <div className="action-cta">
+            <IconContext.Provider
+              value={{
+                size: "1em",
+                color: "#fff",
+                className: "global-class-name",
+              }}
+            >
+              <div>
+                <BsSendPlusFill />
+              </div>
+            </IconContext.Provider>
+            <div className="cta-text">Create</div>
+          </div>
+        </div>
+      </div>
+      <div className="home-right">
+        <img src={HomeImage} alt="" className="h-img" />
+      </div>
+    </div>
+  );
+}
+
+export default Banner;

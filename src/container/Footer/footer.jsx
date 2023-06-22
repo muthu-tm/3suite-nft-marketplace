@@ -1,12 +1,10 @@
 import React, { useContext } from "react";
 import { BiArrowToTop } from "react-icons/bi";
 import { IconContext } from "react-icons";
-import { useTranslation } from "react-i18next";
 //
 import "./footer.css";
 
 function Footer(props) {
-  const { t } = useTranslation();
 
   const backToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -79,7 +77,7 @@ function Footer(props) {
       <div style={{ marginBottom: 10 }} />
 
       <div className="copyRights">
-        <div className="sub-text">{t("footer.copyrightText")}</div>
+        <div className="sub-text">footer.copyrights.com</div>
         {/* <div className="sub-text">support@godl.com</div> */}
       </div>
       <div style={{ marginBottom: 10 }} />
