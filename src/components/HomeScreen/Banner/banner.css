@@ -9,8 +9,6 @@
     align-items: center;
 }
 
-.h-img {}
-
 .home-left {
     max-width: 50%;
     display: flex;
@@ -30,7 +28,6 @@
 .home-right {
     max-width: 50%;
 }
-
 .heading-span {
     background: linear-gradient(to right, #CE00E6, #E7009C);
     -webkit-background-clip: text;
