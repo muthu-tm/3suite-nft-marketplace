@@ -186,7 +186,7 @@ function Navbar(props) {
   return (
     <div className="nav-cont">
       <div className="nav-routes">
-      <h4 className="white logo">3suite</h4>
+      <h4 className="white logo">3SuiteNFT</h4>
         <div className="routes">
           <ul className={click ? "nav-menu active" : "nav-list"}>
             <li
@@ -200,11 +200,11 @@ function Navbar(props) {
 
             <li
               className={
-                window.location.pathname == "/create"
+                window.location.pathname == "/create-nft"
                   ? "nav-list-active"
                   : ""
               }
-              onClick={() => navigate("/create")}
+              onClick={() => navigate("/create-nft")}
             >
               Create
             </li>
