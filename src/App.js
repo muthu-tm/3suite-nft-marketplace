@@ -7,6 +7,9 @@ import { TopStrip } from "./container/TopStrip/TopStrip";
 import Footer from "./container/Footer/footer";
 import HomePage from "./pages/HomePage";
 import CreateNFT from "./pages/CreateNFT";
+import ProfilePage from "./pages/ProfilePage";
+import ExplorePage from "./pages/ExplorePage";
+import SingleNft from "./components/SingleNftScreen/SingleNft";
 
 function App() {
   return (
@@ -15,7 +18,10 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="*" element={<HomePage />} exact />
-        <Route path="create-nft" element={<CreateNFT />} exact />
+        <Route path="create-nft" element={<CreateNFT />}  />
+        <Route path="explore" element={< ExplorePage/>}  />
+        <Route path="profile" element={<ProfilePage />}  />
+        <Route path="nft/id:?123" element={<SingleNft />}  />
       </Routes>
       <Footer />
     </div>

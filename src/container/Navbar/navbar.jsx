@@ -195,9 +195,18 @@ function Navbar(props) {
               }
               onClick={() => navigate("/")}
             >
+              Home
+            </li>
+            <li
+              className={
+                window.location.pathname == "/explore"
+                  ? "nav-list-active"
+                  : ""
+              }
+              onClick={() => navigate("/explore")}
+            >
               Explore
             </li>
-
             <li
               className={
                 window.location.pathname == "/create-nft"

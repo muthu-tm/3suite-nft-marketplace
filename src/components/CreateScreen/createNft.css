@@ -1,19 +1,62 @@
 .create {
-    width: 60%;
+    max-width: 1250px;
+    width: 100%;
     margin: 50px auto 30px;
+
+}
+
+.c-sec {
+    display: flex;
+    flex-direction: row-reverse;
+    /* align-items: center; */
+    justify-content: space-between;
 }
 
 .textfield-head {
+    width: 85%;
     font-size: 18px;
     font-weight: 600;
     color: #CBCCD1;
     line-height: 26px;
-
     margin-bottom: 10px;
 }
 
+.image-cont {
+    max-width: 40%;
+}
+
+.data-cont {
+    max-width: 60%;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+width: 350px;
+}
+
+.single-tag {
+    width: 90px;
+    padding: 10px;
+    text-align: center;
+    color: #CBCCD1;
+    font-size: 13px;
+    font-weight: 400;
+    border: 1px solid #CE00E6;
+    border-radius: 8px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+.single-tag:hover{
+    transition: 1s ease-in-out;
+
+    background-color: #CE00E6;
+}
+
 .textfield-input {
-    width: 90%;
+    width: 85%;
     margin: 5px auto 30px;
     background-color: transparent;
     border: 1px solid #cbccd187;
@@ -26,6 +69,7 @@
 }
 
 .textfield-desc {
+    width: 85%;
     font-size: 12px;
     font-weight: 400;
     color: #cbccd19c;
@@ -39,7 +83,7 @@
     position: absolute;
     cursor: pointer;
     z-index: 1;
-    width: 40%;
+    width: 25%;
     height: 30%;
 }
 
