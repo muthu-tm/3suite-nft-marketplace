@@ -65,7 +65,7 @@ width: 350px;
     font-size: 14px;
     color: #CBCCD1;
     letter-spacing: 0.8px;
-
+    font-family: 'Poppins', sans-serif;
 }
 
 .textfield-desc {
@@ -94,4 +94,35 @@ width: 350px;
     border-radius: 8px;
     height: 250px;
     width: 350px;
+}
+@media screen and (max-width:960px) {
+   .c-sec{
+        flex-direction: column;
+   }
+   .image-cont,.data-cont{
+    max-width: 90%;
+    margin: auto;
+   }
+   .image-file{
+        width: 97%;
+        height: 200px;
+   }
+   .tags{
+            width: 97%;
+            margin-bottom: 20px;
+   }
+   .single-tag{
+    width: 80px;
+   }
+   .owned{
+    width: 90%;
+    margin: auto;
+   }
+   .textfield-input{
+    padding: 15px;
+    width: 90%;
+   }
+   .textfield-desc{
+    width: auto;
+   }
 }

@@ -57,7 +57,7 @@ function CreateNft(props) {
                 Nature
             </div>
             <div className="single-tag">
-                Photography
+              Galaxy
             </div>
             <div className="single-tag">
                Space
