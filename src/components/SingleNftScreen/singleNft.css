@@ -77,6 +77,10 @@ align-items: baseline;
     height: 50px;
     border-radius: 50%;
     margin-right: 10px;
+
+}
+.m5{
+    margin-left: 25px;
 }
 .Name{
     color: #CBCCD1;
@@ -97,4 +101,38 @@ align-items: baseline;
     backdrop-filter: blur( 0.5px )!important;
     -webkit-backdrop-filter: blur( 0.5px )!important;
     border: 1px solid rgba( 255, 255, 255, 0.18 )!important;
+}
+@media screen and (max-width:960px) {
+    .single-nft{
+        flex-direction: column;
+        margin: 0px auto 0;
+    }
+    .sec-l {
+        width: 90%;
+        margin: auto auto 40px;
+    }
+    .owner-data{
+        flex-direction: column;
+
+    }
+    .m5{
+        margin-left: 0;
+        margin-top: 25px;
+    }
+    .sec-r{
+        width: 90%;
+        margin: auto;
+    }
+    .nft-name{
+        font-size: 24px;
+    }
+    .nft-desc{
+        margin-top: 15px;
+    font-size: 12px;
+    line-height: 20px;
+    }
+    .s-nft-price{
+        font-size: 18px;
+        margin: 20px 0;
+    }
 }

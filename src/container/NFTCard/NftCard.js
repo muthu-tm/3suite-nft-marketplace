@@ -355,7 +355,7 @@ function NftCard(props) {
         </div>
       </div>
       {windowSize.width >= 960  && 
-      <div>
+      <>
       <div className="nft-card">
         <img src={NFT7} alt="" className="nft-img" />
         <div className="desc-sec">
@@ -680,7 +680,7 @@ function NftCard(props) {
           </div>
         </div>
       </div>
-      </div>
+      </>
       }
     </>
   );

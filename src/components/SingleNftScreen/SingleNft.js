@@ -27,7 +27,8 @@ function SingleNft(props) {
               </div>
             </div>
           </div>
-          <div style={{ display: "flex", marginLeft: 25 }}>
+
+          <div style={{ display: "flex"}} className="m5">
             <img src={Image4} alt="" className="own-img" />
             <div>
               <div className="Name">Current Owner</div>
