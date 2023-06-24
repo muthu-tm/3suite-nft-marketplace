@@ -45,3 +45,16 @@
     line-height: 20px;
     padding-bottom: 10px;
 }
+@media screen and (max-width:960px) {
+    .create-sell{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 90%;
+    } 
+    .container{
+        width: 80%;
+        margin: 10px auto;
+    }
+}

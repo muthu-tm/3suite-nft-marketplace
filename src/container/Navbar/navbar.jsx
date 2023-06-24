@@ -247,7 +247,7 @@ function Navbar(props) {
                 <IconContext.Provider
                   value={{
                     size: "1.2em",
-                    color: "#f9d461",
+                    color: "#CE00E6",
                     className: "global-class-name",
                   }}
                 >
@@ -259,7 +259,7 @@ function Navbar(props) {
                 <IconContext.Provider
                   value={{
                     size: "1.2em",
-                    color: "#f9d461",
+                    color: "#CE00E6",
                     className: "global-class-name",
                   }}
                 >

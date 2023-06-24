@@ -80,3 +80,28 @@
     margin-left: 8px;
     margin-bottom: 2px;
 }
+@media screen and (max-width:960px) {
+    .home-right{
+        display: none;
+    }
+    .home-left{
+        max-width: 100%;
+    }
+    .banner-screen{
+        padding: 20px;
+        width: auto;
+    }
+    .heading-span{
+        font-size: 30px;
+        padding: 10px 0;
+
+    }
+    .heading{
+        font-size: 24px;
+    }
+    .description{
+        font-size: 12px;
+        line-height: 24px;
+        margin-top: 0;
+    }
+}

@@ -24,8 +24,10 @@ import Image5 from "../../assets/images/s5.jpg";
 import Image6 from "../../assets/images/s6.jpg";
 import Image7 from "../../assets/images/s7.jpg";
 import { Tooltip } from "antd";
+import useWindowSize from "../../utils/windowSize";
 
 function NftCard(props) {
+  const windowSize = useWindowSize();
   return (
     <>
       <div className="nft-card">
@@ -352,6 +354,8 @@ function NftCard(props) {
           </div>
         </div>
       </div>
+      {windowSize.width >= 960  && 
+      <div>
       <div className="nft-card">
         <img src={NFT7} alt="" className="nft-img" />
         <div className="desc-sec">
@@ -676,6 +680,8 @@ function NftCard(props) {
           </div>
         </div>
       </div>
+      </div>
+      }
     </>
   );
 }

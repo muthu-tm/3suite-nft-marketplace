@@ -226,16 +226,16 @@ ul.nav-list {
     display: flex;
     flex-direction: column;
     width: 84%;
-    border-top: 1px solid #fff;
+    /* border-top: 1px solid #fff; */
     position: absolute;
-    top: 90px;
+    top: 105px;
     left: -110%;
     opacity: 1;
     transition: all 0.5s ease;
   }
 
   .nav-menu.active {
-    background-color: #35342f;
+    background-color:     #252339;
     left: 0px;
     opacity: 1;
     transition: all 0.5s ease;
