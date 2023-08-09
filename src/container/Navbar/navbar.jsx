@@ -24,6 +24,7 @@ import {
   createWeb3Object,
 } from "../../services/web3-services";
 import config from "../../config";
+import Logo from "../../assets/images/LogoImage.png"
 
 let walletType;
 
@@ -186,8 +187,9 @@ function Navbar(props) {
   return (
     <div className="nav-cont">
       <div className="nav-routes">
-      <h4 className="white logo">3SuiteNFT</h4>
-        <div className="routes">
+      {/* <h4 className="white logo">3SuiteNFT</h4> */}
+      <img src={Logo} alt="" className="logo-img" />
+        <div className="routes"> 
           <ul className={click ? "nav-menu active" : "nav-list"}>
             <li
               className={

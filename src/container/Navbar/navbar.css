@@ -70,7 +70,9 @@ ul.nav-list {
 }
 
 .nav-list-active {
-  color: #CE00E6 !important;
+  color: #E7009C !important;
+
+  font-weight: 500!important;
 }
 
 .break {
@@ -146,8 +148,8 @@ ul.nav-list {
 }
 
 .logo-img {
-  width: 65px;
-  height: 65px;
+  width: 150px;
+  height: auto;
 
 }
 

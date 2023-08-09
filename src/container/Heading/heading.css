@@ -1,7 +1,7 @@
 .heading{
     display: flex;
     flex-direction: column;
-align-items: center;
+align-items: baseline;
 }
 .head-text-h{
     font-size: 32px;

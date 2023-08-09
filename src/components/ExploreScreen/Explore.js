@@ -6,10 +6,10 @@ import SingleNft from '../SingleNftScreen/SingleNft';
 function Explore(props) {
     return (
         <div className='exp-sec'>
-<NftCard/>
-<NftCard/>
+{/* <NftCard/>
+<NftCard/> */}
 
-{/* <SingleNft/> */}
+<SingleNft/>
 
         </div>
     );

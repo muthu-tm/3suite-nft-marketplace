@@ -13,38 +13,73 @@ function CreatorCard(props) {
     <>
       <div className="c-card">
         <img src={Image1} alt="" className="creator-img" />
-        <div className="c-name">Creator Name</div>
-        <div className="c-eth">0.315ETH</div>
+        <div className="creater-right">
+          <div className="c-name">Creator Name</div>
+          <div className="c-eth">0.315ETH</div>
+        </div>
       </div>
       <div className="c-card">
         <img src={Image2} alt="" className="creator-img" />
-        <div className="c-name">Creator Name</div>
-        <div className="c-eth">0.289ETH</div>
+        <div className="creater-right">
+          <div className="c-name">Creator Name</div>
+          <div className="c-eth">0.289ETH</div>
+        </div>
       </div>
       <div className="c-card">
         <img src={Image3} alt="" className="creator-img" />
-        <div className="c-name">Creator Name</div>
-        <div className="c-eth">0.015ETH</div>
+        <div className="creater-right">
+          <div className="c-name">Creator Name</div>
+          <div className="c-eth">0.015ETH</div>
+        </div>
       </div>
       <div className="c-card">
         <img src={Image4} alt="" className="creator-img" />
-        <div className="c-name">Creator Name</div>
-        <div className="c-eth">0.525ETH</div>
+        <div className="creater-right">
+          <div className="c-name">Creator Name</div>
+          <div className="c-eth">0.525ETH</div>
+        </div>
       </div>
       <div className="c-card">
         <img src={Image5} alt="" className="creator-img" />
-        <div className="c-name">Creator Name</div>
-        <div className="c-eth">0.034ETH</div>
+        <div className="creater-right">
+          <div className="c-name">Creator Name</div>
+          <div className="c-eth">0.034ETH</div>
+        </div>
       </div>
       <div className="c-card">
-        <img src={Image6} alt="" className="creator-img" />
-        <div className="c-name">Creator Name</div>
-        <div className="c-eth">0.267ETH</div>
+        <img src={Image4} alt="" className="creator-img" />
+        <div className="creater-right">
+          <div className="c-name">Creator Name</div>
+          <div className="c-eth">0.525ETH</div>
+        </div>
       </div>
       <div className="c-card">
-        <img src={Image7} alt="" className="creator-img" />
-        <div className="c-name">Creator Name</div>
-        <div className="c-eth">0.289ETH</div>
+        <img src={Image3} alt="" className="creator-img" />
+        <div className="creater-right">
+          <div className="c-name">Creator Name</div>
+          <div className="c-eth">0.015ETH</div>
+        </div>
+      </div>
+      <div className="c-card">
+        <img src={Image4} alt="" className="creator-img" />
+        <div className="creater-right">
+          <div className="c-name">Creator Name</div>
+          <div className="c-eth">0.525ETH</div>
+        </div>
+      </div>
+      <div className="c-card">
+        <img src={Image1} alt="" className="creator-img" />
+        <div className="creater-right">
+          <div className="c-name">Creator Name</div>
+          <div className="c-eth">0.315ETH</div>
+        </div>
+      </div>
+      <div className="c-card">
+        <img src={Image2} alt="" className="creator-img" />
+        <div className="creater-right">
+          <div className="c-name">Creator Name</div>
+          <div className="c-eth">0.289ETH</div>
+        </div>
       </div>
     </>
   );
