@@ -14,7 +14,7 @@ import SingleNFTPage from "./pages/SingleNFTPage";
 function App() {
   return (
     <div className="app-css">
-      <TopStrip />
+      {/* <TopStrip /> */}
       <Navbar />
       <Routes>
         <Route path="*" element={<HomePage />} exact />

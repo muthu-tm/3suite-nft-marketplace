@@ -188,7 +188,7 @@ function Navbar(props) {
     <div className="nav-cont">
       <div className="nav-routes">
       {/* <h4 className="white logo">3SuiteNFT</h4> */}
-      <img src={Logo} alt="" className="logo-img" />
+      <img src={Logo} alt="" className="logo-img" onClick={()=> navigate("/")} />
         <div className="routes"> 
           <ul className={click ? "nav-menu active" : "nav-list"}>
             <li
