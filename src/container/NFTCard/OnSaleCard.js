@@ -6,7 +6,7 @@ import { IconContext } from "react-icons";
 
 function OnSaleCard({Image}) {
     return (
-        <div className="nft-card">
+        <div className="nft-card" style={{width:'auto',margin:"1px 20px 20px 0"}}>
         <img src={Image} alt="" className="nft-img" />
         <div className="desc-sec">
           <div className="name">NFT Name / Anything</div>

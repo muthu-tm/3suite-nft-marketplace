@@ -21,6 +21,9 @@ import Image7 from "../../assets/images/s7.jpg";
 import OwnedNftCard from "../../container/NFTCard/OwnedNftCard";
 import CreatedNFTCard from "../../container/NFTCard/CreatedNFTCard";
 import OnSaleCard from "../../container/NFTCard/OnSaleCard";
+import { IconContext } from "react-icons";
+import {BsInstagram,BsBehance} from "react-icons/bs";
+import {TbBrandAdobe} from "react-icons/tb";
 
 function Profile(props) {
   const [acTab, setAcTab] = useState("1");
@@ -31,7 +34,44 @@ function Profile(props) {
         <img src={ProfileImage} alt="" className="user-profile" />
       </div>
       <div className="user-desc">
+        <div style={{display:'flex',alignItems:'center'}}>
         <div className="user-name">Username01379</div>
+        <div style={{marginLeft:20}} />
+        <IconContext.Provider
+                value={{
+                  size: "1.2em",
+                  color: "#fff",
+                  className: "global-class-name",
+                }}
+              >
+                <div style={{ marginLeft: 10 }}>
+                  <BsInstagram />
+                </div>
+                </IconContext.Provider>
+                <IconContext.Provider
+                value={{
+                  size: "1.2em",
+                  color: "#fff",
+                  className: "global-class-name",
+                }}
+              >
+                <div style={{ marginLeft: 10 }}>
+               
+                  <TbBrandAdobe />
+                </div>
+                </IconContext.Provider>
+                <IconContext.Provider
+                value={{
+                  size: "1.2em",
+                  color: "#fff",
+                  className: "global-class-name",
+                }}
+              >
+                <div style={{ marginLeft: 10 }}>
+                <BsBehance />
+                </div>
+                </IconContext.Provider>
+        </div>
         <div className="user-wallet">
           Address:{" "}
           <span style={{ color: "#CE00E6", fontSize: 12 }}>
@@ -75,7 +115,7 @@ function Profile(props) {
             <CreatedNFTCard Image={NFT6} />
             <CreatedNFTCard Image={NFT12} />
             <CreatedNFTCard Image={NFT9} />
-            <CreatedNFTCard Image={NFT10} />
+            <CreatedNFTCard Image={NFT11} />
           </div>
         )}
         {acTab === "2" && (
@@ -83,6 +123,7 @@ function Profile(props) {
             <OwnedNftCard Image={NFT2} />
             <OwnedNftCard Image={NFT5} />
             <OwnedNftCard Image={NFT11} />
+            <OwnedNftCard Image={NFT9} />
           </div>
         )}
         {acTab === "3" && (
@@ -92,7 +133,7 @@ function Profile(props) {
         )}
 
         {acTab === "4" && (
-          <div style={{marginTop:50}}>
+          <div style={{width:'80%'}}>
             <div className="single-activity">
               <img src={Image1} alt="" className="act-img" />
               <div className="act-data">

@@ -5,8 +5,8 @@ var web3Defaultobj;
 export const web3GlobalContext = createContext();
 
 export function Web3Global({ children }) {
-  const [walletAddress, setWalletAddress] = useState(null);
-  const [chainGlobal, setChainGlobal] = useState("");
+  const [walletAddress, setWalletAddress] = useState(localStorage.getItem("walletAddress"));
+  const [chainGlobal, setChainGlobal] = useState(localStorage.getItem("netId"));
   const [provider, setProvider] = useState();
   const [web3Obj, setWeb3Obj] = useState();
   const [isAccChange, setIsAccChange] = useState(false);

@@ -122,11 +122,14 @@ function Navbar(props) {
       setWeb3Obj(web3);
       setProvider(provider);
       const network = await web3.eth.getChainId();
+      localStorage.setItem("netId", network)
       setChainGlobal(network);
       const accounts = await web3.eth.getAccounts();
       localStorage.setItem("wallet_type", "trustwallet");
       if (accounts) {
         const publicAddress = Web3.utils.toChecksumAddress(accounts[0]);
+        localStorage.setItem("walletAddress", publicAddress)
+    
         setWalletAddress(publicAddress);
       }
       setModal2Open(false);
@@ -160,10 +163,12 @@ function Navbar(props) {
         method: "net_version",
       });
       setChainGlobal(networkId);
+      localStorage.setItem("netId", networkId)
       const accounts = await window.ethereum.request({
         method: "eth_requestAccounts",
       });
       const publicAddress = Web3.utils.toChecksumAddress(accounts[0]);
+      localStorage.setItem("walletAddress", publicAddress)
       setWalletAddress(publicAddress);
       localStorage.setItem("wallet_type", "metamask");
       setModal2Open(false);
@@ -238,7 +243,7 @@ function Navbar(props) {
               Connect Wallet
             </button>
           ) : (
-            <button className="cnt-wallet" onClick={() => setModal1Open(true)}>
+            <button className="cnt-wallet" onClick={()=>navigate("/register")}>
               {getEllipsisTxt(walletAddress, 6)}
             </button>
           )}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./explore.css";
 import NftCard from "../../container/NFTCard/NftCard";
 import SingleNft from "../SingleNftScreen/SingleNft";
@@ -24,14 +24,65 @@ import Image5 from "../../assets/images/s5.jpg";
 import Image6 from "../../assets/images/s6.jpg";
 import Image7 from "../../assets/images/s7.jpg";
 import { useNavigate } from "react-router-dom";
+import { IconContext } from "react-icons";
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 
 function Explore(props) {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [openFilter, setOpenFilter] = useState(false);
   return (
     <div className="explore">
-      <Heading title="Explore"  />
+      <div className="filter-section">
+        <Heading title="Explore" />
+        <div>
+          <div className="filterBtn" onClick={() => setOpenFilter(!openFilter)}>
+            <div className="f-text">Select Filters</div>
+            {!openFilter ? (
+              <IconContext.Provider
+                value={{
+                  size: "1em",
+                  color: "#fff",
+                  className: "global-class-name",
+                }}
+              >
+                <div style={{ marginTop: 5, marginLeft: 8 }}>
+                  <MdKeyboardArrowDown />
+                </div>
+              </IconContext.Provider>
+            ) : (
+              <IconContext.Provider
+                value={{
+                  size: "1em",
+                  color: "#fff",
+                  className: "global-class-name",
+                }}
+              >
+                <div style={{ marginTop: 5, marginLeft: 8 }}>
+                  <MdKeyboardArrowUp />
+                </div>
+              </IconContext.Provider>
+            )}
+          </div>
+          {openFilter && (
+            <div className="f-dd">
+              <div style={{ display: "flex", alignItems: "baseline",paddingBottom:5 }}>
+                <input type="checkbox"  className="checkbox" />
+            <div className="f-text">Animation</div>
+              </div>
+              <div style={{ display: "flex", alignItems: "baseline",paddingBottom:5 }}>
+                <input type="checkbox"  className="checkbox" />
+            <div className="f-text">3D</div>
+              </div>
+              <div style={{ display: "flex", alignItems: "baseline",paddingBottom:5  }}>
+                <input type="checkbox"  className="checkbox" />
+            <div className="f-text">Photography</div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
       <div className="exp-sec">
-      <div className="single-exp" onClick={()=>navigate("/nft/id")}>
+        <div className="single-exp" onClick={() => navigate("/nft/id")}>
           <img src={NFT4} alt="" className="exp-img" />
           <div className="name">NFT Name / Anything</div>
 
@@ -107,7 +158,7 @@ function Explore(props) {
           </div>
           <div className="buyBtn">View More</div>
         </div>
-      <div className="single-exp">
+        <div className="single-exp">
           <img src={NFT5} alt="" className="exp-img" />
           <div className="name">NFT Name / Anything</div>
 

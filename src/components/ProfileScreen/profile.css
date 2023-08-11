@@ -43,34 +43,50 @@
 
 .tab-sec {
     margin: 30px auto;
+    display: flex;
 }
 
 .tab-head {
-    display: flex;
-    flex-direction: row;
     align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: space-between;
+    width: 155px;
+    margin-right: 30px;
+    background-color: #48485042;
+    border: 1px solid #cbccd124 !important;
+    padding: 25px 15px;
+    height: 200px;
+    margin-top: 1px;
 }
 
 .head-text {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 22px;
     color: #f8f7f3;
     cursor: pointer;
     margin-right: 30px;
+    margin-bottom: 15px;
+text-align: center;
+width: 100%;
 }
 
 .head-text-active {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 22px;
     color: #f8f7f3;
-
-    text-decoration: underline;
-    text-underline-offset: 6px;
-    text-decoration-color: #CE00E6;
+    margin-bottom: 15px;
+text-align: center;
     margin-right: 30px;
     text-decoration-thickness: 3px;
+    background: #CE00E6;
+    text-decoration-thickness: 3px;
+    padding: 10px;
+    border-radius: 4px;
+    width: 89%;
 }
 
 .owned-sec {
@@ -78,7 +94,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin: 30px 0 0;
+   
 }
 
 .single-activity {
@@ -88,7 +104,7 @@
     padding: 20px 20px;
     border-radius: 8px;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.17) !important;
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .act-img {

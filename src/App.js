@@ -10,6 +10,7 @@ import CreateNFT from "./pages/CreateNFT";
 import ProfilePage from "./pages/ProfilePage";
 import ExplorePage from "./pages/ExplorePage";
 import SingleNFTPage from "./pages/SingleNFTPage";
+import RegisterScreen from "./pages/RegisterScreen";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="explore" element={< ExplorePage/>}  />
         <Route path="profile" element={<ProfilePage />}  />
         <Route path="nft/id" element={<SingleNFTPage />}  />
+        <Route path="register" element={<RegisterScreen />}  />
       </Routes>
       <Footer />
     </div>

@@ -72,6 +72,41 @@
         cursor: pointer;
 
     }
+    .filter-section{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+    }
+    .filterBtn{
+ display: flex;
+        align-items: center;
+        cursor: pointer ;
+        justify-content: space-between;
+            background-color: #48485042;
+            border-radius: 4px;
+            padding: 5px 12px;
+                 width: 125px;
+    }
+    .f-text{
+                color: #CBCCD1;
+        font-size: 14px;
+    }
+    .f-dd{
+        width: 125px;
+         background-color: #26262d;
+            border-radius: 4px;
+            padding: 10px 12px;
+                position: absolute;
+    right: 0;
+    top: 50px;
+    }
+    .checkbox{
+  background: transparent;
+  border: 1px solid #cbccd19c;
+  border-radius: 8px;
+  cursor: pointer;
+}
 @media screen and (max-width:960px) {
     .exp-sec{
         justify-content: center;
