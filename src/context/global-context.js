@@ -7,22 +7,23 @@ export const web3GlobalContext = createContext();
 export function Web3Global({ children }) {
   const [walletAddress, setWalletAddress] = useState(localStorage.getItem("walletAddress"));
   const [chainGlobal, setChainGlobal] = useState(localStorage.getItem("netId"));
+  const [userId, setUserId] = useState("");
+  const [userName, setUserName] = useState("");
+  const [existingUser, setExistingUser] = useState();
   const [provider, setProvider] = useState();
   const [web3Obj, setWeb3Obj] = useState();
   const [isAccChange, setIsAccChange] = useState(false);
   const [isAccDisconnect, setIsAccDisconnect] = useState(false);
   const [walletType, setWalletType] = useState("");
+  const [authToken, setAuthToken] = useState(
+    localStorage.getItem("auth_token")
+  );
+  
+  const [refreshToken, setRefreshToken] = useState(
+    localStorage.getItem("refresh_token")
+  );
 
-  const defaultState = async () => {
-    web3Defaultobj = await createWeb3Object();
-    setWeb3Obj(web3Defaultobj);
-  };
-  useLayoutEffect(() => {
-    if (!walletAddress) {
-      defaultState();
-    }
-  }, [walletAddress]);
-
+  
   useEffect(() => {
     if (window.ethereum) {
       window.ethereum.on("accountsChanged", (acc) => {
@@ -67,6 +68,13 @@ export function Web3Global({ children }) {
         setIsAccDisconnect,
         walletType,
         setWalletType,
+        authToken,
+        setAuthToken,
+        refreshToken,
+        setRefreshToken,
+        userId, setUserId,
+        userName, setUserName,
+        existingUser, setExistingUser
       }}
     >
       {children}

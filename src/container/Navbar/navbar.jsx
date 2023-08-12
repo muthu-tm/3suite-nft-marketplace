@@ -25,6 +25,7 @@ import {
 } from "../../services/web3-services";
 import config from "../../config";
 import Logo from "../../assets/images/LogoImage.png"
+import { userLogin,verifyUser } from "../../services/APIManager";
 
 let walletType;
 
@@ -46,8 +47,15 @@ function Navbar(props) {
     isAccChange,
     setIsAccChange,
     isAccDisconnect,
+   
+    setAuthToken,
+    setExistingUser,
+    setUserId,
+    setUserName,
   } = useContext(web3GlobalContext);
-
+  const [authorizationToken, setAuthorizationToken] = useState(
+    localStorage.getItem("auth_token")
+  );
   const [web3Modal, setWeb3Modal] = useState(null);
   walletType = localStorage.getItem("wallet_type");
 
@@ -128,14 +136,14 @@ function Navbar(props) {
       localStorage.setItem("wallet_type", "trustwallet");
       if (accounts) {
         const publicAddress = Web3.utils.toChecksumAddress(accounts[0]);
-        localStorage.setItem("walletAddress", publicAddress)
-    
+        localStorage.setItem("walletAddress", publicAddress)    
         setWalletAddress(publicAddress);
       }
       setModal2Open(false);
+      await defaultState(localStorage.getItem("walletAddress"), network);
     } catch (error) {
       console.error(error);
-      return false;
+      return false;     
     }
   };
 
@@ -172,6 +180,7 @@ function Navbar(props) {
       setWalletAddress(publicAddress);
       localStorage.setItem("wallet_type", "metamask");
       setModal2Open(false);
+      await defaultState(publicAddress, networkId);
     } catch (e) {
       console.error(e);
 
@@ -186,6 +195,46 @@ function Navbar(props) {
     } catch (error) {
       console.log("Error in switchBlockchainLogic", error);
       return false;
+    }
+  };
+
+  const defaultState = async (address, netId) => {
+    let data = {
+      address: address,
+      chain_id: Number(netId),
+    };
+    if (address) {
+      try {
+        const verifyRes = await verifyUser(data);
+        console.log("verifyRes", verifyRes);
+        setExistingUser(verifyRes.status);
+        if (verifyRes.status) {
+          try {
+            const loginRes = await userLogin(data);
+            console.log("loginRes", loginRes);
+            if (loginRes.status) {
+              setAuthorizationToken(loginRes.data.auth_token);
+              setUserId(loginRes.data.user.id);
+              setUserName(loginRes.data.user.name);
+              localStorage.setItem("username",loginRes.data.user.name)
+              setAuthToken(loginRes.data.auth_token);
+              localStorage.setItem("auth_token", loginRes.data.auth_token)
+              localStorage.setItem(
+                "refresh_token",
+                loginRes.data.refresh_token
+              );
+            }
+            window.location.reload();
+          } catch (e) {
+            console.log("layout login", e);
+            return;
+          }
+        } else {
+          navigate("/register");
+        }
+      } catch (e) {
+        console.log("layout error", e);
+      }
     }
   };
 
@@ -238,15 +287,23 @@ function Navbar(props) {
           </ul>
         </div>
         <div style={{ display: "flex", alignItems: "center" }}>
-          {!showWalletAddress ? (
-            <button className="cnt-wallet" onClick={() => setModal2Open(true)}>
-              Connect Wallet
-            </button>
+
+
+        {window.location.pathname == "/register" && walletAddress ? (
+                  <button className="cnt-wallet" >
+                  {getEllipsisTxt(walletAddress, 6)}
+                </button>
+          ) : walletAddress && authorizationToken ? (
+            <button className="cnt-wallet" onClick={()=>navigate("/profile")}>
+            {getEllipsisTxt(walletAddress, 6)}
+          </button>
           ) : (
-            <button className="cnt-wallet" onClick={()=>navigate("/register")}>
-              {getEllipsisTxt(walletAddress, 6)}
-            </button>
+            <button className="cnt-wallet" onClick={() => setModal2Open(true)}>
+            Connect Wallet
+          </button>
           )}
+
+
 
           {windowSize.width <= 960 && (
             <div onClick={handleClick}>

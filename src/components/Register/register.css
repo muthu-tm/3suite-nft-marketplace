@@ -11,6 +11,12 @@
     border: 1px dashed #cbccd19c;
     cursor: pointer;
 }
+.pro-image{
+    width: 175px;
+    height: 175px;
+    border-radius: 50%;
+    border: 1px dashed #cbccd19c;
+}
 .textfield-input {
 
     margin: 5px auto 30px;
@@ -83,4 +89,10 @@
     width: 87%;
     height: 175px;
     padding: 15px;
+}
+.banner-img{
+    border: 1px dashed #cbccd19c;
+    border-radius: 4px;
+    width: 87%;
+    height: 175px;
 }

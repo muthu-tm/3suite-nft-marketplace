@@ -147,3 +147,39 @@ export const userRegister = async (data) => {
       return;
     }
   };
+  export const getS3UserUrl = async (address, name) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "GET",
+    };
+    try {
+      const response = await fetch(baseUrl + `app/presigned-user-url?address=${address}&key=${name}`, config);
+      let result = await response.json();
+      return result;
+    } catch (err) {
+      console.log(err, "error");
+      return;
+    }
+  };
+  export const verifyUser = async (data) => {
+
+    const config = {
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+    };
+    try {
+      const response = await fetch(baseUrl + `user/verify`, config);
+      console.log("verifyUser", response);
+      let result = await response.json();
+      return result;
+    } catch (err) {
+      console.log(err, "verifyUser");
+      return;
+    }
+  };
+  
