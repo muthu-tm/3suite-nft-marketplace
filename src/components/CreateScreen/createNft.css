@@ -95,6 +95,12 @@ width: 350px;
     height: 250px;
     width: 350px;
 }
+.prev-img {
+    width: 350px ;
+    height: 350px;
+    margin:20px auto;
+    border-radius: 8px;
+}
 @media screen and (max-width:960px) {
    .c-sec{
         flex-direction: column;
