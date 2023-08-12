@@ -4,8 +4,10 @@ import HomeImage from "../../../assets/images/home1.png";
 import { MdRocketLaunch } from "react-icons/md";
 import { BsSendPlusFill } from "react-icons/bs";
 import { IconContext } from "react-icons";
+import { useNavigate } from "react-router-dom";
 
 function Banner(props) {
+  const navigate = useNavigate()
   return (
     <div className="banner-screen">
       <div className="home-left">
@@ -16,7 +18,7 @@ function Banner(props) {
           NFT Marketplace | Unlock Your Digital Creativity, Embrace NFTs Today!
         </div>
         <div className="cta-home">
-          <div className="action-cta">
+          <div className="action-cta" onClick={()=>navigate("/explore")}>
             <IconContext.Provider
               value={{
                 size: "1em",
@@ -30,7 +32,7 @@ function Banner(props) {
             </IconContext.Provider>
             <div className="cta-text">Explore</div>
           </div>
-          <div className="action-cta">
+          <div className="action-cta" onClick={()=>navigate("/profile")}>
             <IconContext.Provider
               value={{
                 size: "1em",

@@ -22,7 +22,7 @@ function App() {
         <Route path="create-nft" element={<CreateNFT />}  />
         <Route path="explore" element={< ExplorePage/>}  />
         <Route path="profile" element={<ProfilePage />}  />
-        <Route path="nft/id" element={<SingleNFTPage />}  />
+        <Route path="nft/:id" element={<SingleNFTPage />}  />
         <Route path="register" element={<RegisterScreen />}  />
       </Routes>
       <Footer />

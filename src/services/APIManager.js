@@ -182,4 +182,59 @@ export const userRegister = async (data) => {
       return;
     }
   };
-  
+  export const getAllAssets = async () => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "GET",
+    };
+    try {
+      const response = await fetch(baseUrl + "nft/all", config);
+      let result = await response.json();
+      console.log("getAllAssets", result);
+      return result;
+    } catch (err) {
+      console.log(err, "error - getAllAssets");
+      return;
+    }
+  };
+  export const sortData = async ( tags, filter) => {
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "GET",
+    };
+    try {
+      const response = await fetch(
+        baseUrl +
+        `nft/all?limit=15&tags=${JSON.stringify(tags)}&created_sort=${filter}`,
+        config
+      );
+      let result = await response.json();
+      console.log("sortData", result);
+      return result;
+    } catch (err) {
+      console.log(err, "error - sortData");
+      return;
+    }
+  };
+  export const getAssetByID = async (id) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "GET",
+    };
+    try {
+      const response = await fetch(baseUrl + `nft?id=${id}`, config);
+      let result = await response.json();
+      console.log("get Asset By ID", result);
+      return result;
+    } catch (err) {
+      console.log(err, "error - getAllAssets");
+      return;
+    }
+  };
