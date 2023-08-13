@@ -32,7 +32,7 @@ function Banner(props) {
             </IconContext.Provider>
             <div className="cta-text">Explore</div>
           </div>
-          <div className="action-cta" onClick={()=>navigate("/profile")}>
+          <div className="action-cta" onClick={()=>navigate("/create-nft")}>
             <IconContext.Provider
               value={{
                 size: "1em",

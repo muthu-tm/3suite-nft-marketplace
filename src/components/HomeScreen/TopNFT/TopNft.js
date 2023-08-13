@@ -40,6 +40,10 @@ function TopNft(props) {
     navigate(`/nft/${id}`, { state: id });
   };
 
+  function onViewMoreClick() {
+    navigate(`/explore`);
+  }
+
   return (
     <>
       <div className="t-nft">
@@ -53,7 +57,7 @@ function TopNft(props) {
             let registerationTime = regTime.slice(3);
             // onClick={()=>moveSingleNFTPage(nft.id)}
             return (
-              <div className="nft-card">
+              <div className="nft-card" onClick={() => moveSingleNFTPage(nft.id)}>
                 <img
                   src={isValidUrl(nft.asset) ? nft?.asset : NotFound}
                   alt=""
@@ -86,7 +90,7 @@ function TopNft(props) {
           })}
         </div>
         <div className="view-btn">
-          <button className="view-more">
+          <button className="view-more" onClick={onViewMoreClick}>
             View More <span style={{ marginLeft: 5 }}> &rarr; </span>
           </button>
         </div>

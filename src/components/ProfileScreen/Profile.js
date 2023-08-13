@@ -24,21 +24,22 @@ import { TbBrandAdobe } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 import { web3GlobalContext } from "../../context/global-context";
 import { getUserData } from "../../services/APIManager";
+import { useLocation } from "react-router-dom";
 
 function Profile(props) {
+  const { state } = useLocation();
   const [acTab, setAcTab] = useState("1");
   const navigate = useNavigate();
-  const { walletAddress, chainGlobal } = useContext(web3GlobalContext);
-  const auth_token = localStorage.getItem("auth_token");
+  const { walletAddress, chainGlobal, userId } = useContext(web3GlobalContext);
   const [userData, setUserData] = useState();
+
   useEffect(() => {
-    if (walletAddress) {
-      getUserdata();
-    }
-  }, [walletAddress]);
+    getUserdata();
+  }, [userId]);
+
   const getUserdata = async () => {
     try {
-      const userRes = await getUserData(auth_token);
+      const userRes = await getUserData(state || userId);
       setUserData(userRes);
       console.log("userRes", userRes);
     } catch (e) {
@@ -46,6 +47,7 @@ function Profile(props) {
       return;
     }
   };
+  
   return (
     <div className="profile-sec">
       <div style={{ position: "relative" }}>
@@ -70,7 +72,7 @@ function Profile(props) {
       </div>
       <div className="user-desc">
         <div style={{ display: "flex", alignItems: "center" }}>
-          <div className="user-name">Username01379</div>
+          <div className="user-name">{userData?.data?.name}</div>
         </div>
         <div className="user-wallet">
           Address:{" "}
@@ -79,11 +81,11 @@ function Profile(props) {
           </span>
         </div>
       </div>
-      <div style={{ display: "flex", alignItems: "center", margin: "5px 0 0"  }}>
-        <div className="nft-desc" style={{ marginTop: 0,color: "#fff",fontSize:14 }}>
+      <div style={{ display: "flex", alignItems: "center", margin: "5px 0 0" }}>
+        <div className="nft-desc" style={{ marginTop: 0, color: "#fff", fontSize: 14 }}>
           @{userData?.data?.user_id}
         </div>
-        <div style={{ marginLeft:5 }} />
+        <div style={{ marginLeft: 5 }} />
         <IconContext.Provider
           value={{
             size: "1em",
@@ -91,7 +93,7 @@ function Profile(props) {
             className: "global-class-name",
           }}
         >
-          <div style={{ marginLeft: 10, marginTop:8 }}>
+          <div style={{ marginLeft: 10, marginTop: 8 }}>
             <BsInstagram />
           </div>
         </IconContext.Provider>

@@ -4,10 +4,11 @@ import Heading from "../../../container/Heading/Heading";
 import { web3GlobalContext } from "../../../context/global-context";
 import { getTopCreators } from "../../../services/APIManager";
 import NotFound from "../../../assets/images/notFound.png";
+import { useNavigate } from "react-router-dom";
 
 function TopCreator(props) {
+  const navigate = useNavigate();
   const [topCreator, setTopCreator] = useState();
-
   const { walletAddress } = useContext(web3GlobalContext);
 
   const TopCreator = async () => {
@@ -22,17 +23,24 @@ function TopCreator(props) {
   };
 
   useEffect(() => {
-    if (walletAddress) {
       TopCreator();
-    }
   }, [walletAddress]);
+
+  function onCreatorClick(id) {
+    navigate(`/profile`, { state: id });
+  }
+
+  function onViewMoreClick() {
+    navigate(`/explore`);
+  }
+
   return (
     <div className="top-creator">
       <Heading title="Top Creators" />
       <div className="creator-list">
         {topCreator?.map((item, index) => {
           return (
-            <div className="c-card">
+            <div className="c-card" onClick={() => onCreatorClick(item.id)}>
               <img
                 src={item.profile.img ? item.profile.img : NotFound}
                 alt=""
@@ -47,7 +55,7 @@ function TopCreator(props) {
         })}
       </div>
       <div className="view-btn">
-        <button className="view-more">
+        <button className="view-more" onClick={onViewMoreClick}>
           View More <span style={{ marginLeft: 5 }}> &rarr; </span>
         </button>
       </div>

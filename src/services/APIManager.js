@@ -48,11 +48,8 @@ export const userRegister = async (data) => {
       method: "GET",
     };
     try {
-        
       const response = await fetch(baseUrl +"user/top", config);
-      
       let result = await response.json();
-      
       console.log("getTopCreators", result);
       
       return result;
@@ -61,6 +58,7 @@ export const userRegister = async (data) => {
       return;
     }
   };
+
   const getAPIData = async (config, url) => {
     const response = await fetch(baseUrl + url, config);
     if (response.status == 401 || response.status == 403) {
@@ -79,6 +77,7 @@ export const userRegister = async (data) => {
   
     return response
   }
+
   export const RefreshAuth = async (data) => {
     const config = {
       body: JSON.stringify(data),
@@ -97,16 +96,21 @@ export const userRegister = async (data) => {
       return;
     }
   };
-  export const getUserData = async (auth_token) => {
+
+  export const getUserData = async (id) => {
     const config = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${auth_token}`,
       },
       method: "GET",
     };
     try {
-      const response = await getAPIData(config, "user")
+      let response;
+      if (id) {
+        response = await getAPIData(config, `user?id=${id}`)
+      } else {
+        response = await getAPIData(config, "user")
+      }
       let result = await response.json();
       return result;
     } catch (err) {

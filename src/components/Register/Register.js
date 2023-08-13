@@ -5,7 +5,6 @@ import ProfSkele from "../../assets/images/profileSkele.png";
 import {
   getAppConfig,
   getS3UserUrl,
-  getUserData,
   userRegister,
 } from "../../services/APIManager";
 import { IconContext } from "react-icons";
@@ -15,16 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 function Register() {
   const navigate = useNavigate();
-  const [tags, setTags] = useState([
-    "Animation",
-    "3D",
-    "DigitalArt",
-    "Photography",
-    "Starwars",
-    "Atlasian",
-    "CryptoArt",
-    "Vernunft",
-  ]);
+  const [tags, setTags] = useState([]);
   const [tagSelected, setTagSelected] = useState([]);
 
   const [userBio, setUserBio] = useState("");
@@ -41,6 +31,31 @@ function Register() {
     setUserId,
     setUserName,
   } = useContext(web3GlobalContext);
+
+  useEffect(() => {
+    loadAppConfig();
+  }, [walletAddress]);
+
+  const loadAppConfig = async () => {
+    try {
+      const appConfigRes = await getAppConfig();
+      console.log("appConfigRes", appConfigRes);
+      setTags(appConfigRes.data.tags);
+    } catch (e) {
+      console.log("getuser data", e);
+      return;
+    }
+  };
+
+  const onSelectTag = async (value) => {
+    if (tagSelected.includes(value)) {
+      setTagSelected((prevState) =>
+        prevState.filter((prevItem) => prevItem !== value)
+      );
+    } else {
+      setTagSelected([...tagSelected, value]);
+    }
+  };
 
   async function uploadPicture(e) {
     try {
@@ -100,6 +115,7 @@ function Register() {
         banner: bannerImg ? bannerImg : "",
         address: walletAddress ? walletAddress : "",
         chain_id: chainGlobal ? Number(chainGlobal) : Number(0),
+        preferences: tagSelected
       };
       if (!walletAddress) {
         setErrorText("Please connect your wallet!");
@@ -118,7 +134,7 @@ function Register() {
         navigate("/profile");
       }
     } catch (error) {
-      console.log("Error while register user",error);
+      console.log("Error while register user", error);
       return false;
     }
   };
@@ -133,57 +149,57 @@ function Register() {
             Profile Image
           </div>
           {userProfileImg ?
-          <img src={userProfileImg} alt="" className="pro-image"/>
-          :
-          <>
-          <input
-            type="file"
-            className="FileUpload"
-            accept=".jpg,.png,.gif"
-            onChange={uploadPicture}
-          />
-          <img src={ProfSkele} alt="" className="prof-img" />
-          </>
-        }
+            <img src={userProfileImg} alt="" className="pro-image" />
+            :
+            <>
+              <input
+                type="file"
+                className="FileUpload"
+                accept=".jpg,.png,.gif"
+                onChange={uploadPicture}
+              />
+              <img src={ProfSkele} alt="" className="prof-img" />
+            </>
+          }
         </div>
         <div style={{ width: "50%", marginBottom: 25 }}>
           <div className="label-text" style={{ marginBottom: 5 }}>
             Banner Image
           </div>
-    {bannerImg ?
-    <div>
-        <img src={bannerImg} alt="" className="banner-img" />
-        </div>
-    :
-          <div className="banner-image">
-            <input
-              type="file"
-              className="FileUpload"
-              accept=".jpg,.png,.gif"
-              onChange={uploadBanner}
-            />
-            <IconContext.Provider
-              value={{
-                size: "3em",
-                color: "#cbccd19c",
-                className: "global-class-name",
-              }}
-            >
-              <div
-                style={{
-                  height: "100%",
-                  cursor: "pointer",
-                  width: "100%",
-                  margin: "auto",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
+          {bannerImg ?
+            <div>
+              <img src={bannerImg} alt="" className="banner-img" />
+            </div>
+            :
+            <div className="banner-image">
+              <input
+                type="file"
+                className="FileUpload"
+                accept=".jpg,.png,.gif"
+                onChange={uploadBanner}
+              />
+              <IconContext.Provider
+                value={{
+                  size: "3em",
+                  color: "#cbccd19c",
+                  className: "global-class-name",
                 }}
               >
-                <RiImageAddFill />
-              </div>
-            </IconContext.Provider>
-          </div>}
+                <div
+                  style={{
+                    height: "100%",
+                    cursor: "pointer",
+                    width: "100%",
+                    margin: "auto",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <RiImageAddFill />
+                </div>
+              </IconContext.Provider>
+            </div>}
         </div>
       </div>
       <div className="flex">
@@ -232,14 +248,18 @@ function Register() {
                 return (
                   <div
                     className="single-tag"
+                    onClick={() => {
+                      onSelectTag(item.name);
+                    }}
                     style={{
-                      background: tagSelected.includes(item)
+                      background: tagSelected.includes(item?.name)
                         ? "#fff"
                         : "transparent",
-                      color: tagSelected.includes(item) ? "#000" : "#fff",
+                      color: tagSelected.includes(item?.name) ? "#000" : "#fff",
                     }}
+
                   >
-                    {item}
+                    {item.name}
                   </div>
                 );
               })}
