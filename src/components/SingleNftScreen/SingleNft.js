@@ -11,7 +11,7 @@ import Image2 from "../../assets/images/s2.jpg";
 import NFT12 from "../../assets/images/n10.jpg";
 import { web3GlobalContext } from "../../context/global-context";
 import Web3 from "web3";
-import { getAssetByID } from "../../services/APIManager";
+import { getAssetByID, getRelevantAssets } from "../../services/APIManager";
 import { useLocation } from "react-router-dom";
 import LoadingGif from "../../assets/images/loading.gif";
 import NotFound from "../../assets/images/notFound.png"
@@ -19,6 +19,7 @@ import NotFound from "../../assets/images/notFound.png"
 function SingleNft(props) {
   const { state } = useLocation();
   const [asset, setAsset] = useState();
+  const [moreAssets, setMoreAssets] = useState([]);
   const [ownerAddress, setOwnerAddress] = useState();
   const [assetSource, setAssetSource] = useState();
   const [isLoading, setIsLoading] = useState(true);
@@ -59,6 +60,13 @@ function SingleNft(props) {
         setAssetSource(res.data.asset);
         setIsLoading(false);
       }
+
+      let relAssetsRes = await getRelevantAssets(
+        res.data.tags.length > 0 ? res.data.tags : "",
+        state,
+        "desc"
+      );
+      setMoreAssets(relAssetsRes.data);
     } catch (e) {
       console.log("get Asset By ID: ", e);
       return false;
@@ -85,7 +93,7 @@ function SingleNft(props) {
           <Heading title="Item Detail" />
           <div className="single-nft">
             <div className="sec-l">
-            {assetType === "image" ? (
+              {assetType === "image" ? (
                 <img src={assetSource} alt="" className="sgl-nft" />
               ) : assetType === "video" ? (
                 <>
@@ -95,7 +103,7 @@ function SingleNft(props) {
                 </>
               ) : (
                 <>
-                <img src={NotFound} alt="" className="sgl-nft" />
+                  <img src={NotFound} alt="" className="sgl-nft" />
                 </>
               )}
             </div>
@@ -122,7 +130,7 @@ function SingleNft(props) {
                   <div>
                     <div className="Name">Created by</div>
                     <div className="Wallet">
-                    {getEllipsisTxt(asset.creator?.address, 9)}
+                      {getEllipsisTxt(asset.creator?.address, 9)}
                     </div>
                   </div>
                 </div>
@@ -132,14 +140,14 @@ function SingleNft(props) {
                   <div>
                     <div className="Name">Current Owner</div>
                     <div className="Wallet">
-                    {getEllipsisTxt(asset.owner?.address || "", 9)}
+                      {getEllipsisTxt(asset.owner?.address || "", 9)}
                     </div>
                   </div>
                 </div>
               </div>
 
               <div className="nft-desc">
-              {asset.desc}
+                {asset.desc}
               </div>
               <div className="nft-tags" style={{ marginTop: 5 }}>
                 <div className="rate-btn">1.456ETH</div>
@@ -186,6 +194,25 @@ function SingleNft(props) {
               {/* <button className="cnt-wallet" style={{ width: "150px" }}>
             Buy NFT
           </button> */}
+            </div>
+          </div>
+
+          {/* More Like This Section */}
+          <div className="more-like">
+            <div className="more-head">More Like This:</div>
+            <div className="more-data">
+              {moreAssets?.map((item, index) => {
+                return (
+                  <div className="nft-card">
+                    <img src={Image} alt="" className="nft-img" />
+                    <div className="desc-sec">
+                      <div className="name">{item.name}</div>
+
+                      <div className="owned">0.765ETH</div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

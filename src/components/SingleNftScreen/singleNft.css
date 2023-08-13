@@ -154,6 +154,30 @@ align-items: baseline;
     line-height: 22px;
     margin-top: 5px;
 }
+
+
+.more-like {
+
+    margin: 75px auto 25px;
+}
+
+.more-head {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 22px;
+    color: #fff !important;
+    margin-bottom: 15px;
+
+}
+
+.more-data {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px auto 20px;
+}
+
 @media screen and (max-width:960px) {
     .single-nft{
         flex-direction: column;
