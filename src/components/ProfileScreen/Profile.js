@@ -23,8 +23,9 @@ import { BsInstagram, BsBehance } from "react-icons/bs";
 import { TbBrandAdobe } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 import { web3GlobalContext } from "../../context/global-context";
-import { getUserData } from "../../services/APIManager";
+import { getCreatedAssets, getOwnedAssets, getUserData } from "../../services/APIManager";
 import { useLocation } from "react-router-dom";
+import { BiRefresh } from "react-icons/bi";
 
 function Profile(props) {
   const { state } = useLocation();
@@ -32,6 +33,8 @@ function Profile(props) {
   const navigate = useNavigate();
   const { walletAddress, chainGlobal, userId } = useContext(web3GlobalContext);
   const [userData, setUserData] = useState();
+  const [userCreated, setUserCreated] = useState([]);
+  const [userOwned, setUserOwned] = useState([]);
 
   useEffect(() => {
     getUserdata();
@@ -39,15 +42,34 @@ function Profile(props) {
 
   const getUserdata = async () => {
     try {
-      const userRes = await getUserData(state || userId);
-      setUserData(userRes);
+      let userRes;
+      let assetRes;
+      let ownAssetRes;
+      if (state) {
+        userRes = await getUserData(state);
+        assetRes = await getCreatedAssets(userRes?.data?.address);
+        ownAssetRes = await getOwnedAssets(userRes?.data?.address);
+      } else {
+        userRes = await getUserData(userId);
+        assetRes = await getCreatedAssets(walletAddress);
+        ownAssetRes = await getOwnedAssets(walletAddress);
+      }
+
+      setUserData(userRes.data);
+      setUserCreated(assetRes.data);
+      setUserOwned(ownAssetRes.data);
+
       console.log("userRes", userRes);
     } catch (e) {
       console.log("getuser data", e);
       return;
     }
   };
-  
+
+  const moveSingleNFTPage = async (id) => {
+    navigate(`/nft/${id}`, { state: id })
+  }
+
   return (
     <div className="profile-sec">
       <div style={{ position: "relative" }}>
@@ -152,27 +174,79 @@ function Profile(props) {
           </div>
         </div>
 
-        {/* <div className="b-bottom" style={{marginTop:20}}/> */}
-
         {acTab === "1" && (
           <div className="owned-sec">
-            <CreatedNFTCard Image={NFT6} />
-            <CreatedNFTCard Image={NFT12} />
-            <CreatedNFTCard Image={NFT9} />
-            <CreatedNFTCard Image={NFT11} />
+            {userCreated?.map((item, index) => {
+              return (
+
+                <div className="nft-card" onClick={() => moveSingleNFTPage(item.id)}>
+                  <img src={Image} alt="" className="nft-img" />
+                  <div className="desc-sec">
+                    <div>
+                      <div className="name">{item.name}</div>
+                      <div className="owned">0.765ETH</div>
+                    </div>
+                    <div className="buy-btn">Sell</div>
+                  </div>
+                </div>
+              )
+            })}
           </div>
         )}
         {acTab === "2" && (
           <div className="owned-sec">
-            <OwnedNftCard Image={NFT2} />
-            <OwnedNftCard Image={NFT5} />
-            <OwnedNftCard Image={NFT11} />
-            <OwnedNftCard Image={NFT9} />
+            {userOwned?.map((item, index) => {
+              return (
+                <div className="nft-card" style={{ width: 'auto', margin: "1px 20px 20px 0" }}>
+                  <img src={Image} alt="" className="nft-img" />
+                  <div className="desc-sec">
+
+                    <div className="name">{item.name}</div>
+
+                    <div className="owned">0.765ETH</div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         )}
         {acTab === "3" && (
           <div className="owned-sec">
-            <OnSaleCard Image={NFT3} />
+            {userOwned?.map((item, index) => {
+              if (item.status == 3 || item.status == 4) {
+                return (
+                  <div className="nft-card" style={{ width: 'auto', margin: "1px 20px 20px 0" }}>
+                    <img src={Image} alt="" className="nft-img" />
+                    <div className="desc-sec">
+                      <div className="name">{item.name}</div>
+                      <div className="owned">0.753ETH</div>
+                    </div>
+
+                    <div style={{ marginTop: 8 }} />
+                    <div className="desc-sec">
+
+                      <div className="bid-cta">
+                        <div className="view-his">View Detail</div>
+                      </div>
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        <IconContext.Provider
+                          value={{
+                            size: "1em",
+                            color: "#fff",
+                            className: "global-class-name",
+                          }}
+                        >
+                          <div style={{ marginRight: 5, cursor: "pointer" }}>
+                            <BiRefresh />
+                          </div>
+                        </IconContext.Provider>
+                        <div className="view-his">View History</div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+            })}
           </div>
         )}
 

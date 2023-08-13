@@ -131,7 +131,7 @@ function Register() {
         setUsername(registerRes.data.user.name);
         setAuthToken(registerRes.data.auth_token);
         window.location.reload();
-        navigate("/profile");
+        navigate("/profile", { state: registerRes.data.user.id });
       }
     } catch (error) {
       console.log("Error while register user", error);
