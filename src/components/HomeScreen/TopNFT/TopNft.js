@@ -41,7 +41,7 @@ function TopNft(props) {
   };
 
   function onViewMoreClick() {
-    navigate(`/explore`);
+    navigate(`/explore`, { state: "nft" });
   }
 
   return (

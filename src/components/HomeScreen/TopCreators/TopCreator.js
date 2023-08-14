@@ -31,7 +31,7 @@ function TopCreator(props) {
   }
 
   function onViewMoreClick() {
-    navigate(`/explore`);
+    navigate(`/explore`,{ state: "creator" });
   }
 
   return (

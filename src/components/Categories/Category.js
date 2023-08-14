@@ -7,8 +7,10 @@ import Music from "../../assets/images/music.png";
 import Gaming from "../../assets/images/gaming.png";
 import { web3GlobalContext } from "../../context/global-context";
 import { getAppConfig } from "../../services/APIManager";
+import { useNavigate } from "react-router-dom";
 
 function Category() {
+  const navigate = useNavigate()
   const { walletAddress, chainGlobal } = useContext(web3GlobalContext);
   const [tags, setTags] = useState([]);
 
@@ -27,12 +29,14 @@ function Category() {
       loadInfo();
     }
   }, [walletAddress]);
+
+
+  function onViewMoreClick() {
+    navigate(`/explore`, { state: "category" });
+  }
   return (
     <div className="exp-cat">
       <Heading title="Explore Categories" />
-
-
-
 
       <div className="all-cat">
             {tags?.map((item,index)=>{
@@ -45,7 +49,11 @@ function Category() {
       )
     })}
        </div>
-
+       <div className="view-btn">
+          <button className="view-more" onClick={onViewMoreClick}>
+            View More <span style={{ marginLeft: 5 }}> &rarr; </span>
+          </button>
+        </div>
       </div>
   
   );
