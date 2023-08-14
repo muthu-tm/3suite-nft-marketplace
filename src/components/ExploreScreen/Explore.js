@@ -1,21 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./explore.css";
 import Heading from "../../container/Heading/Heading";
 import NFT4 from "../../assets/images/n4.jpg";
 import Image6 from "../../assets/images/s6.jpg";
 import LoadingGif from "../../assets/images/loading.gif";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import {
   getAllAssets,
   getAppConfig,
+  getTopCreators,
   sortData,
 } from "../../services/APIManager";
-import NotFound from "../../assets/images/notFound.png"
+import NotFound from "../../assets/images/notFound.png";
+import { web3GlobalContext } from "../../context/global-context";
 
 function Explore(props) {
   const navigate = useNavigate();
+  const { walletAddress } = useContext(web3GlobalContext);
+  const location = useLocation();
+  const { state } = location;
+  console.log("state value" , state)
+
   const [openFilter, setOpenFilter] = useState(false);
   const [allAssets, setAllAssets] = useState();
   const [isLoading, setIsLoading] = useState(false);
@@ -23,6 +30,10 @@ function Explore(props) {
   const [selectedTags, setSelectedTags] = useState("");
   const [tagSel, setTagSel] = useState(false);
   const [filter, setFilter] = useState(null);
+  const [topCreator, setTopCreator] = useState();
+
+  const [exploreType, setExploreType] = useState(state?state : "nft");
+
 
   const getAssets = async () => {
     try {
@@ -48,11 +59,29 @@ function Explore(props) {
       return error;
     }
   };
+  const TopCreator = async () => {
+    try {
+      const creatorRes = await getTopCreators();
+      console.log("creatorRes", creatorRes);
+      setTopCreator(creatorRes.data);
+    } catch (e) {
+      console.log("error in getting top creator", e);
+      return;
+    }
+  };
+  useEffect(() => {
+    TopCreator();
+  }, [walletAddress]);
+
   useEffect(() => {
     getAssets();
-    getFilters();
   }, []);
 
+  useEffect(() => {
+    getFilters();
+    setExploreType(state)
+  }, [state]);
+  
   const isValidUrl = (urlString) => {
     try {
       return Boolean(new URL(urlString));
@@ -181,42 +210,92 @@ function Explore(props) {
         </div>
       ) : (
         <>
-          <div className="exp-sec">
-            {allAssets?.map((item, index) => {
-              return (
-                <div
-                  className="single-exp"
-                  onClick={() => moveSingleNFTPage(item.id)}
-                >
-                  <img
-                    src={isValidUrl(item.asset) ? item.asset : NotFound}
-                    alt=""
-                    className="exp-img"
-                  />
-                  <div className="name">{item.name}</div>
+          {exploreType === "nft" ? (
+            <div className="exp-sec">
+              {allAssets?.map((item, index) => {
+                return (
+                  <div
+                    className="single-exp"
+                    onClick={() => moveSingleNFTPage(item.id)}
+                  >
+                    <img
+                      src={isValidUrl(item.asset) ? item.asset : NotFound}
+                      alt=""
+                      className="exp-img"
+                    />
+                    <div className="name">{item.name}</div>
 
-                  <div className="desc-sec">
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      <img src={Image6} alt="" className="user-img" />
-                      <div>
-                        <div className="owned">
-                          {item.owner?.name ? "Owned By" : "Created By"}
-                        </div>
-                        <div className="creator-name">
-                          {item.owner?.name || item.creator?.name}
+                    <div className="desc-sec">
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        <img src={Image6} alt="" className="user-img" />
+                        <div>
+                          <div className="owned">
+                            {item.owner?.name ? "Owned By" : "Created By"}
+                          </div>
+                          <div className="creator-name">
+                            {item.owner?.name || item.creator?.name}
+                          </div>
                         </div>
                       </div>
+                      <div>
+                        <div className="owned">Price</div>
+                        <div className="creator-name">2.75ETH</div>
+                      </div>
                     </div>
-                    <div>
-                      <div className="owned">Price</div>
-                      <div className="creator-name">2.75ETH</div>
-                    </div>
+                    <div className="buyBtn">View More</div>
                   </div>
-                  <div className="buyBtn">View More</div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          ) : (
+            <>
+              {exploreType === "category" ? (
+                <>
+                  <div className="all-cat">
+                    {tags?.map((item, index) => {
+                      return (
+                        <div
+                          className="single-cat"
+                          style={{ display: index > 3 ? "none" : "" }}
+                        >
+                          <img src={item.img} alt="" className="cat-img" />
+                          <div className="cat-name">{item.name}</div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </>
+              ) : (
+                <>
+                  {exploreType === "creator" ? (
+                    <>
+                      <div className="creator-list">
+                        {topCreator?.map((item, index) => {
+                          return (
+                            <div className="c-card">
+                              <img
+                                src={
+                                  item.profile.img ? item.profile.img : NotFound
+                                }
+                                alt=""
+                                className="creator-img"
+                              />
+                              <div className="creater-right">
+                                <div className="c-name">{item.name}</div>
+                                <div className="c-eth">{item.user_id}</div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                </>
+              )}
+            </>
+          )}
         </>
       )}
       {/* <SingleNft/> */}

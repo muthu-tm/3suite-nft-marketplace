@@ -5,8 +5,6 @@ import Image2 from "../../assets/images/s2.jpg";
 import Image3 from "../../assets/images/s3.jpg";
 import Image4 from "../../assets/images/s4.jpg";
 import Image5 from "../../assets/images/s5.jpg";
-import Image6 from "../../assets/images/s6.jpg";
-import Image7 from "../../assets/images/s7.jpg";
 
 function CreatorCard(props) {
   return (

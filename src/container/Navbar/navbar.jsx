@@ -20,13 +20,11 @@ import getLinker from "../../utils/deepLink";
 import mobileCheck from "../../utils/mobileCheck";
 import "../../styles/globalStyle.css";
 import { switchBlockchain } from "../../utils/web3-utils";
-import {
-  createWeb3Object,
-} from "../../services/web3-services";
+import { createWeb3Object } from "../../services/web3-services";
 import config from "../../config";
-import Logo from "../../assets/images/LogoImage.png"
-import { userLogin,verifyUser } from "../../services/APIManager";
-
+import Logo from "../../assets/images/LogoImage.png";
+import { userLogin, verifyUser } from "../../services/APIManager";
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 let walletType;
 
 function Navbar(props) {
@@ -37,6 +35,8 @@ function Navbar(props) {
   const [modal1Open, setModal1Open] = useState(false);
   const [modal2Open, setModal2Open] = useState(false);
   const [showWalletAddress, setShowWalletAddress] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+
   const {
     walletAddress,
     setWalletAddress,
@@ -47,7 +47,7 @@ function Navbar(props) {
     isAccChange,
     setIsAccChange,
     isAccDisconnect,
-   
+
     setAuthToken,
     setExistingUser,
     setUserId,
@@ -130,20 +130,20 @@ function Navbar(props) {
       setWeb3Obj(web3);
       setProvider(provider);
       const network = await web3.eth.getChainId();
-      localStorage.setItem("netId", network)
+      localStorage.setItem("netId", network);
       setChainGlobal(network);
       const accounts = await web3.eth.getAccounts();
       localStorage.setItem("wallet_type", "trustwallet");
       if (accounts) {
         const publicAddress = Web3.utils.toChecksumAddress(accounts[0]);
-        localStorage.setItem("walletAddress", publicAddress)    
+        localStorage.setItem("walletAddress", publicAddress);
         setWalletAddress(publicAddress);
       }
       setModal2Open(false);
       await defaultState(localStorage.getItem("walletAddress"), network);
     } catch (error) {
       console.error(error);
-      return false;     
+      return false;
     }
   };
 
@@ -171,12 +171,12 @@ function Navbar(props) {
         method: "net_version",
       });
       setChainGlobal(networkId);
-      localStorage.setItem("netId", networkId)
+      localStorage.setItem("netId", networkId);
       const accounts = await window.ethereum.request({
         method: "eth_requestAccounts",
       });
       const publicAddress = Web3.utils.toChecksumAddress(accounts[0]);
-      localStorage.setItem("walletAddress", publicAddress)
+      localStorage.setItem("walletAddress", publicAddress);
       setWalletAddress(publicAddress);
       localStorage.setItem("wallet_type", "metamask");
       setModal2Open(false);
@@ -216,9 +216,9 @@ function Navbar(props) {
               setAuthorizationToken(loginRes.data.auth_token);
               setUserId(loginRes.data.user.id);
               setUserName(loginRes.data.user.name);
-              localStorage.setItem("username",loginRes.data.user.name)
+              localStorage.setItem("username", loginRes.data.user.name);
               setAuthToken(loginRes.data.auth_token);
-              localStorage.setItem("auth_token", loginRes.data.auth_token)
+              localStorage.setItem("auth_token", loginRes.data.auth_token);
               localStorage.setItem(
                 "refresh_token",
                 loginRes.data.refresh_token
@@ -241,9 +241,14 @@ function Navbar(props) {
   return (
     <div className="nav-cont">
       <div className="nav-routes">
-      {/* <h4 className="white logo">3SuiteNFT</h4> */}
-      <img src={Logo} alt="" className="logo-img" onClick={()=> navigate("/")} />
-        <div className="routes"> 
+        {/* <h4 className="white logo">3SuiteNFT</h4> */}
+        <img
+          src={Logo}
+          alt=""
+          className="logo-img"
+          onClick={() => navigate("/")}
+        />
+        <div className="routes">
           <ul className={click ? "nav-menu active" : "nav-list"}>
             <li
               className={
@@ -253,16 +258,89 @@ function Navbar(props) {
             >
               Home
             </li>
-            <li
-              className={
-                window.location.pathname == "/explore"
-                  ? "nav-list-active"
-                  : ""
-              }
-              onClick={() => navigate("/explore")}
-            >
-              Explore
-            </li>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <li
+                className={
+                  window.location.pathname == "/explore"
+                    ? "nav-list-active"
+                    : ""
+                }
+                // onClick={() => navigate("/explore")}
+                onClick={() => setShowDropdown(!showDropdown)}
+              >
+                Explore
+              </li>
+              {showDropdown ? (
+                <IconContext.Provider
+                  value={{
+                    size: "1.4em",
+                    color: "#fff",
+                    className: "global-class-name",
+                  }}
+                >
+                  <div
+                    style={{
+                      marginLeft: 3,
+                      marginTop: 8,
+                      cursor: "pointer",
+                    }}
+                    className="copy-icon"
+                  >
+                    <MdKeyboardArrowUp />
+                  </div>
+                </IconContext.Provider>
+              ) : (
+                <IconContext.Provider
+                  value={{
+                    size: "1.4em",
+                    color: "#fff",
+                    className: "global-class-name",
+                  }}
+                >
+                  <div
+                    style={{
+                      marginLeft: 3,
+                      marginTop: 8,
+                      cursor: "pointer",
+                    }}
+                    className="copy-icon"
+                  >
+                    <MdKeyboardArrowDown />
+                  </div>
+                </IconContext.Provider>
+              )}
+              {showDropdown && (
+                <div className="nav-dropdown">
+                  <div
+                    className="dd-text"
+                    onClick={() => {
+                      navigate("/explore", { state: "nft" });
+                      setShowDropdown(false);
+                    }}
+                  >
+                    NFT
+                  </div>
+                  <div
+                    className="dd-text"
+                    onClick={() => {
+                      navigate("/explore", { state: "category" });
+                      setShowDropdown(false);
+                    }}
+                  >
+                    Category
+                  </div>
+                  <div
+                    className="dd-text"
+                    onClick={() => {
+                      navigate("/explore", { state: "creator" });
+                      setShowDropdown(false);
+                    }}
+                  >
+                    Creator
+                  </div>
+                </div>
+              )}
+            </div>
             <li
               className={
                 window.location.pathname == "/create-nft"
@@ -276,9 +354,7 @@ function Navbar(props) {
 
             <li
               className={
-                window.location.pathname == "/profile"
-                  ? "nav-list-active"
-                  : ""
+                window.location.pathname == "/profile" ? "nav-list-active" : ""
               }
               onClick={() => navigate("/profile")}
             >
@@ -287,23 +363,19 @@ function Navbar(props) {
           </ul>
         </div>
         <div style={{ display: "flex", alignItems: "center" }}>
-
-
-        {window.location.pathname == "/register" && walletAddress ? (
-                  <button className="cnt-wallet" >
-                  {getEllipsisTxt(walletAddress, 6)}
-                </button>
+          {window.location.pathname == "/register" && walletAddress ? (
+            <button className="cnt-wallet">
+              {getEllipsisTxt(walletAddress, 6)}
+            </button>
           ) : walletAddress && authorizationToken ? (
-            <button className="cnt-wallet" onClick={()=>navigate("/profile")}>
-            {getEllipsisTxt(walletAddress, 6)}
-          </button>
+            <button className="cnt-wallet" onClick={() => navigate("/profile")}>
+              {getEllipsisTxt(walletAddress, 6)}
+            </button>
           ) : (
             <button className="cnt-wallet" onClick={() => setModal2Open(true)}>
-            Connect Wallet
-          </button>
+              Connect Wallet
+            </button>
           )}
-
-
 
           {windowSize.width <= 960 && (
             <div onClick={handleClick}>
@@ -389,10 +461,7 @@ function Navbar(props) {
             alignItems: "center",
           }}
         >
-          <div
-          className="gradient-popup-text"
-          
-          >
+          <div className="gradient-popup-text">
             {walletType === "metamask" && "Connected with Metamask"}
             {walletType === "trustwallet" && "Connected with Trustwallet"}
           </div>

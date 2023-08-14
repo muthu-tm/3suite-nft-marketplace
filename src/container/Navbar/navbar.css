@@ -72,7 +72,7 @@ ul.nav-list {
 .nav-list-active {
   color: #E7009C !important;
 
-  font-weight: 500!important;
+  font-weight: 500 !important;
 }
 
 .break {
@@ -97,7 +97,8 @@ ul.nav-list {
   font-size: 14.4992px;
   line-height: 22px;
 }
-.logo{
+
+.logo {
   /* background: linear-gradient(to right, #CE00E6, #E7009C );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; */
@@ -105,7 +106,8 @@ ul.nav-list {
   font-size: 24px;
   color: #CBCCD1;
 }
-.gradient-popup-text{
+
+.gradient-popup-text {
   /* background: linear-gradient(to right, #CE00E6, #E7009C );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; */
@@ -114,6 +116,7 @@ ul.nav-list {
   margin-bottom: 10px;
   font-size: 22px;
 }
+
 .cnt-wallet {
   background: linear-gradient(90deg, #CE00E6 0%, #E7009C 79.97%);
   border-radius: 6px;
@@ -150,7 +153,7 @@ ul.nav-list {
 .logo-img {
   width: 150px;
   height: auto;
-cursor: pointer;
+  cursor: pointer;
 }
 
 .chain-strip {
@@ -203,6 +206,31 @@ cursor: pointer;
   margin-top: 25px;
 }
 
+.nav-dropdown {
+  border-radius: 4px;
+  background-color: #28282c;
+  z-index: 2;
+  padding: 10px 5px;
+  position: absolute;
+  color: #fff;
+  font-size: 13px;
+  text-align: left;
+  top: 75px;
+  width: 147px;
+  margin-left: 15px;
+}
+
+.dd-text {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.dd-text:hover {
+  background-color: #1B1823;
+
+  border-radius: 4px;
+}
+
 @media (min-width:960px) and (max-width:1250px) {
   .nav-routes {
     width: 90%;
@@ -237,7 +265,7 @@ cursor: pointer;
   }
 
   .nav-menu.active {
-    background-color:     #252339;
+    background-color: #252339;
     left: 0px;
     opacity: 1;
     transition: all 0.5s ease;

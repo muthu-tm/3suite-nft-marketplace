@@ -95,57 +95,7 @@ function TopNft(props) {
           </button>
         </div>
       </div>
-      <div className="t-nft">
-        <Heading title="Top Category" />
 
-        <div className="nft-colln">
-          {topAssets?.map((nft, index) => {
-            const unixSeconds = Number(nft.created_at._seconds);
-            const unixMilliSeconds = unixSeconds * 1000;
-            const myDate = new Date(unixMilliSeconds);
-            const regTime = myDate.toDateString();
-            let registerationTime = regTime.slice(3);
-            // onClick={()=>moveSingleNFTPage(nft.id)}
-            return (
-              <div className="nft-card">
-                <img
-                  src={isValidUrl(nft.asset) ? nft?.asset : NotFound}
-                  alt=""
-                  className="nft-img"
-                />
-                <div className="desc-sec">
-                  <div className="name">{nft.name}</div>
-                  <div className="buy-btn">Buy</div>
-                </div>
-                <div className="desc-sec">
-                  <div style={{ display: "flex", alignItems: "center" }}>
-                    <img src={Image3} alt="" className="user-img" />
-                    <div>
-                      <div className="owned">
-                        {nft.owner?.name ? "Owned By" : "Created By"}
-                      </div>
-                      <div className="creator-name">
-                        {nft.owner?.name || nft.creator?.name}
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <div className="owned">Price</div>
-                    <div className="creator-name">2.75ETH</div>
-                  </div>
-                </div>
-                <div style={{ marginTop: 8 }} />
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="view-btn">
-          <button className="view-more">
-            View More <span style={{ marginLeft: 5 }}> &rarr; </span>
-          </button>
-        </div>
-      </div>
     </>
   );
 }
