@@ -8,7 +8,7 @@ export function Web3Global({ children }) {
   const [walletAddress, setWalletAddress] = useState(localStorage.getItem("walletAddress"));
   const [chainGlobal, setChainGlobal] = useState(localStorage.getItem("netId"));
   const [userId, setUserId] = useState("");
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState({});
   const [existingUser, setExistingUser] = useState();
   const [provider, setProvider] = useState();
   const [web3Obj, setWeb3Obj] = useState();

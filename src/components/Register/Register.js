@@ -20,7 +20,7 @@ function Register() {
   const [userBio, setUserBio] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userProfileImg, setUserProfileImg] = useState("");
-  const [userName, setUsername] = useState();
+  const [username, setUsername] = useState();
   const [errorText, setErrorText] = useState();
   const [bannerImg, setUserBannerImg] = useState();
   const {
@@ -29,6 +29,7 @@ function Register() {
     setAuthToken,
     setWalletAddress,
     setUserId,
+    userName,
     setUserName,
   } = useContext(web3GlobalContext);
 
@@ -108,7 +109,7 @@ function Register() {
   const userSignup = async () => {
     try {
       const data = {
-        name: userName ? userName : "",
+        name: username ? username : "",
         user_id: userEmail ? userEmail : "",
         img: userProfileImg ? userProfileImg : "",
         bio: userBio ? userBio : "",
@@ -127,7 +128,8 @@ function Register() {
         localStorage.setItem("auth_token", registerRes.data.auth_token);
         localStorage.setItem("refresh_token", registerRes.data.refresh_token);
         setUserId(registerRes.data.user.id);
-        setUserName(registerRes.data.user.name);
+        setUserName({userName:registerRes.data.user.name});
+        
         setUsername(registerRes.data.user.name);
         setAuthToken(registerRes.data.auth_token);
         window.location.reload();
@@ -209,7 +211,7 @@ function Register() {
             placeholder="Enter your username"
             className="textfield-input"
             onChange={(e) => setUsername(e.target.value)}
-            value={userName}
+            value={username}
           />
         </div>
         <div className="s-textbox">

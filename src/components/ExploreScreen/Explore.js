@@ -137,6 +137,7 @@ function Explore(props) {
     <div className="explore">
       <div className="filter-section">
         <Heading title="Explore" />
+        {exploreType === "nft" &&
         <div style={{ display: "flex", alignItems: "center" }}>
           <select className="filterBtn" onChange={onClickSorting}>
             <option selected value="desc">
@@ -196,7 +197,7 @@ function Explore(props) {
               })}
             </div>
           )}
-        </div>
+        </div> }
       </div>
 
       {isLoading ? (
@@ -256,7 +257,7 @@ function Explore(props) {
                       return (
                         <div
                           className="single-cat"
-                          style={{ display: index > 3 ? "none" : "" }}
+                         
                         >
                           <img src={item.img} alt="" className="cat-img" />
                           <div className="cat-name">{item.name}</div>
@@ -272,17 +273,17 @@ function Explore(props) {
                       <div className="creator-list">
                         {topCreator?.map((item, index) => {
                           return (
-                            <div className="c-card">
+                            <div className="exp-c-card">
                               <img
                                 src={
                                   item.profile.img ? item.profile.img : NotFound
                                 }
                                 alt=""
-                                className="creator-img"
+                                className="exp-creator-img"
                               />
-                              <div className="creater-right">
-                                <div className="c-name">{item.name}</div>
-                                <div className="c-eth">{item.user_id}</div>
+                              <div className="exp-creater-right">
+                                <div className="ec-name">{item.name}</div>
+                                <div className="ec-eth">{item.user_id}</div>
                               </div>
                             </div>
                           );

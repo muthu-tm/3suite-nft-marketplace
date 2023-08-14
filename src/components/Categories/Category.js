@@ -36,7 +36,7 @@ function Category() {
   }
   return (
     <div className="exp-cat">
-      <Heading title="Explore Categories" />
+      <Heading title="Top Categories" />
 
       <div className="all-cat">
             {tags?.map((item,index)=>{

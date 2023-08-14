@@ -47,7 +47,7 @@ function Navbar(props) {
     isAccChange,
     setIsAccChange,
     isAccDisconnect,
-
+    userName,
     setAuthToken,
     setExistingUser,
     setUserId,
@@ -215,7 +215,7 @@ function Navbar(props) {
             if (loginRes.status) {
               setAuthorizationToken(loginRes.data.auth_token);
               setUserId(loginRes.data.user.id);
-              setUserName(loginRes.data.user.name);
+              setUserName({userName:loginRes.data.user.name});
               localStorage.setItem("username", loginRes.data.user.name);
               setAuthToken(loginRes.data.auth_token);
               localStorage.setItem("auth_token", loginRes.data.auth_token);
@@ -323,21 +323,22 @@ function Navbar(props) {
                   <div
                     className="dd-text"
                     onClick={() => {
-                      navigate("/explore", { state: "category" });
-                      setShowDropdown(false);
-                    }}
-                  >
-                    Category
-                  </div>
-                  <div
-                    className="dd-text"
-                    onClick={() => {
                       navigate("/explore", { state: "creator" });
                       setShowDropdown(false);
                     }}
                   >
                     Creator
                   </div>
+                  <div
+                    className="dd-text"
+                    onClick={() => {
+                      navigate("/explore", { state: "category" });
+                      setShowDropdown(false);
+                    }}
+                  >
+                    Category
+                  </div>
+
                 </div>
               )}
             </div>

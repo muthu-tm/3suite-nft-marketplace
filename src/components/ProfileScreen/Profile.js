@@ -55,7 +55,7 @@ function Profile(props) {
         ownAssetRes = await getOwnedAssets(walletAddress);
       }
 
-      setUserData(userRes.data);
+      setUserData(userRes);
       setUserCreated(assetRes.data);
       setUserOwned(ownAssetRes.data);
 
@@ -69,7 +69,13 @@ function Profile(props) {
   const moveSingleNFTPage = async (id) => {
     navigate(`/nft/${id}`, { state: id })
   }
-
+  const isValidUrl = (urlString) => {
+    try {
+      return Boolean(new URL(urlString));
+    } catch (e) {
+      return false;
+    }
+  };
   return (
     <div className="profile-sec">
       <div style={{ position: "relative" }}>
@@ -180,7 +186,7 @@ function Profile(props) {
               return (
 
                 <div className="nft-card" onClick={() => moveSingleNFTPage(item.id)}>
-                  <img src={Image} alt="" className="nft-img" />
+                  <img src={isValidUrl(item.image) ?item.image : NotFound } alt="" className="nft-img" />
                   <div className="desc-sec">
                     <div>
                       <div className="name">{item.name}</div>
@@ -197,8 +203,8 @@ function Profile(props) {
           <div className="owned-sec">
             {userOwned?.map((item, index) => {
               return (
-                <div className="nft-card" style={{ width: 'auto', margin: "1px 20px 20px 0" }}>
-                  <img src={Image} alt="" className="nft-img" />
+                <div className="nft-card" style={{  margin: "1px 20px 20px 0" }}>
+                  <img src={isValidUrl(item.image) ?item.image : NotFound } alt="" className="nft-img" />
                   <div className="desc-sec">
 
                     <div className="name">{item.name}</div>
@@ -215,8 +221,8 @@ function Profile(props) {
             {userOwned?.map((item, index) => {
               if (item.status == 3 || item.status == 4) {
                 return (
-                  <div className="nft-card" style={{ width: 'auto', margin: "1px 20px 20px 0" }}>
-                    <img src={Image} alt="" className="nft-img" />
+                  <div className="nft-card" style={{margin: "1px 20px 20px 0" }}>
+                    <img src={isValidUrl(item.image) ?item.image : NotFound } alt="" className="nft-img" />
                     <div className="desc-sec">
                       <div className="name">{item.name}</div>
                       <div className="owned">0.753ETH</div>
