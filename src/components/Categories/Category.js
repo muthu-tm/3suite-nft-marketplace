@@ -1,10 +1,10 @@
 import React, { useContext,useState,useEffect } from "react";
 import "./category.css";
 import Heading from "../../container/Heading/Heading";
-import Art from "../../assets/images/art.jpg";
-import Photography from "../../assets/images/photography.jpg";
-import Music from "../../assets/images/music.png";
-import Gaming from "../../assets/images/gaming.png";
+import Art from "../../assets/images/cat1.jpg";
+import Nature from "../../assets/images/cat2.jpg";
+import Music from "../../assets/images/cat3.jpg";
+import Cartoon from "../../assets/images/cat5.jpg";
 import { web3GlobalContext } from "../../context/global-context";
 import { getAppConfig } from "../../services/APIManager";
 import { useNavigate } from "react-router-dom";
@@ -39,15 +39,22 @@ function Category() {
       <Heading title="Top Categories" />
 
       <div className="all-cat">
-            {tags?.map((item,index)=>{
-      return(
-
-         <div className="single-cat" style={{display:index>3?"none":""}}>
-          <img src={item.img} alt="" className="cat-img" />
-          <div className="cat-name">{item.name}</div>
+      <div className="single-cat" >
+          <img src={Art} alt="" className="cat-img" />
+          <div className="cat-name">Art</div>
         </div>
-      )
-    })}
+      <div className="single-cat" >
+          <img src={Nature} alt="" className="cat-img" />
+          <div className="cat-name">Nature</div>
+        </div>
+      <div className="single-cat" >
+          <img src={Cartoon} alt="" className="cat-img" />
+          <div className="cat-name">Music</div>
+        </div>
+      <div className="single-cat" >
+          <img src={Music} alt="" className="cat-img" />
+          <div className="cat-name">Cartoon</div>
+        </div>
        </div>
        <div className="view-btn">
           <button className="view-more" onClick={onViewMoreClick}>

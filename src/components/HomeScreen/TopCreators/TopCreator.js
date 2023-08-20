@@ -5,6 +5,8 @@ import { web3GlobalContext } from "../../../context/global-context";
 import { getTopCreators } from "../../../services/APIManager";
 import NotFound from "../../../assets/images/notFound.png";
 import { useNavigate } from "react-router-dom";
+import CreatedNFTCard from "../../../container/NFTCard/CreatedNFTCard";
+import CreatorCard from "../../../container/Creator/CreatorCard";
 
 function TopCreator(props) {
   const navigate = useNavigate();
@@ -38,7 +40,7 @@ function TopCreator(props) {
     <div className="top-creator">
       <Heading title="Top Creators" />
       <div className="creator-list">
-        {topCreator?.map((item, index) => {
+        {/* {topCreator?.map((item, index) => {
           return (
             <div className="c-card" onClick={() => onCreatorClick(item.id)}>
               <img
@@ -52,7 +54,8 @@ function TopCreator(props) {
               </div>
             </div>
           );
-        })}
+        })} */}
+        <CreatorCard/>
       </div>
       <div className="view-btn">
         <button className="view-more" onClick={onViewMoreClick}>

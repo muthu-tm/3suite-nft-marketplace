@@ -15,7 +15,7 @@ function Banner(props) {
         <div className="heading-span"> Digital Creativity, </div>
         <div className="heading">Embrace NFTs Today!</div>
         <div className="description">
-          NFT Marketplace | Unlock Your Digital Creativity, Embrace NFTs Today!
+        3Suite | Where Creativity Meets the Blockchain: Your NFT Playground
         </div>
         <div className="cta-home">
           <div className="action-cta" onClick={()=>navigate("/explore")}>

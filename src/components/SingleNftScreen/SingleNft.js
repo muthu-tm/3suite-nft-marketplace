@@ -73,43 +73,20 @@ function SingleNft(props) {
     }
   };
 
-  useEffect(() => {
-    getAsset();
-  }, []);
+  
 
   return (
     <>
-      {isLoading && !asset ? (
-        <div style={{ width: "100%" }}>
-          <img
-            src={LoadingGif}
-            alt=""
-            className="loading-gif"
-            style={{ width: 200, margin: "auto", display: "flex" }}
-          />
-        </div>
-      ) : (
+
         <div className="nftSec">
           <Heading title="Item Detail" />
           <div className="single-nft">
             <div className="sec-l">
-              {assetType === "image" ? (
-                <img src={assetSource} alt="" className="sgl-nft" />
-              ) : assetType === "video" ? (
-                <>
-                  <video controls className="sgl-nft">
-                    <source src={assetSource} type="video/mp4" />
-                  </video>
-                </>
-              ) : (
-                <>
-                  <img src={NotFound} alt="" className="sgl-nft" />
-                </>
-              )}
+            <img src={NotFound} alt="" className="sgl-nft" />
             </div>
             <div className="sec-r">
               <div style={{ display: "flex", alignItems: "center" }}>
-                <div className="nft-name">{asset.name}</div>
+                <div className="nft-name">Asset Name</div>
                 <IconContext.Provider
                   value={{
                     size: "1.3em",
@@ -130,7 +107,7 @@ function SingleNft(props) {
                   <div>
                     <div className="Name">Created by</div>
                     <div className="Wallet">
-                      {getEllipsisTxt(asset.creator?.address, 9)}
+                      {getEllipsisTxt("0xC4f4Bc698c3090A5aBC23dfCBc50227C25895E9a", 9)}
                     </div>
                   </div>
                 </div>
@@ -140,14 +117,14 @@ function SingleNft(props) {
                   <div>
                     <div className="Name">Current Owner</div>
                     <div className="Wallet">
-                      {getEllipsisTxt(asset.owner?.address || "", 9)}
+                      {getEllipsisTxt("0x72bCE2654500B89FC7876b1973636Ab116Da7C8A", 9)}
                     </div>
                   </div>
                 </div>
               </div>
 
               <div className="nft-desc">
-                {asset.desc}
+             Random description about the NFT.
               </div>
               <div className="nft-tags" style={{ marginTop: 5 }}>
                 <div className="rate-btn">1.456ETH</div>
@@ -216,7 +193,7 @@ function SingleNft(props) {
             </div>
           </div>
         </div>
-      )}
+
     </>
   );
 }
