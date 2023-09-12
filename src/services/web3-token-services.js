@@ -1,4 +1,4 @@
-import { TOKEN_CONTRACT } from "../contracts-abi/Token";
+import { TOKEN_CONTRACT } from "../contracts-abi/TokenNew";
 import { NFT_CONTRACT } from "../contracts-abi/NFTToken";
 import { createContractObject, createWeb3Object, getConnectedWalletAddress } from "./web3-services";
 
@@ -13,6 +13,17 @@ export const getTokenInfo = async function(_tokenAddress) {
   let decimals = await tokenContract.methods.decimals().call();
   let symbol = await tokenContract.methods.symbol().call();
   return [decimals, symbol];
+};
+
+export const getTokenContract = async function(_tokenAddress) {
+  const web3Obj = await createWeb3Object()
+  const tokenContract = await createContractObject(
+    web3Obj,
+    TOKEN_CONTRACT.abi,
+    _tokenAddress
+  );
+
+  return tokenContract;
 };
 
 export const increaseERC20Allowance = async function (_tokenAddress, _toAddress, _amount) {

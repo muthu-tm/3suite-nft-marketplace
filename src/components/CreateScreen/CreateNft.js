@@ -10,6 +10,7 @@ import { web3GlobalContext } from "../../context/global-context";
 import { useNavigate } from "react-router-dom";
 import config from "../../config";
 import { deployERC1155 } from "../../services/web3-nft-services";
+import { getTokenContract, getTokenInfo } from "../../services/web3-token-services";
 
 let asset_id = uuid();
 function CreateNft(props) {
@@ -111,6 +112,94 @@ function CreateNft(props) {
     }
   }, [walletAddress]);
 
+  const mint = async () => {
+    try {
+      let _toAdd = "0xD8226506f1d2159a9d041402801947DC5e9F7492";
+      let _amount = 1000000000000;
+      let tokenRes = await getTokenInfo("0xFA965E021b455deDF99f775445A1d1EBA695bf72");
+      console.log("token Res: ", tokenRes);
+
+      let tokContract = await getTokenContract("0xFA965E021b455deDF99f775445A1d1EBA695bf72")
+      let mint = await tokContract.methods
+      .mint(_toAdd, _amount.toString())
+      .send({ from: walletAddress })
+      .then(function (receipt) {
+        return receipt;
+        // let TxHash = receipt.transactionHash;
+      });
+
+      console.log(mint)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const burn = async () => {
+    try {
+      let _toAdd = "0xD8226506f1d2159a9d041402801947DC5e9F7492";
+      let _amount = 1000000000000;
+      let tokenRes = await getTokenInfo("0xFA965E021b455deDF99f775445A1d1EBA695bf72");
+      console.log("token Res: ", tokenRes);
+
+      let tokContract = await getTokenContract("0xFA965E021b455deDF99f775445A1d1EBA695bf72")
+      let burn = await tokContract.methods
+      .burn(_amount.toString())
+      .send({ from: walletAddress })
+      .then(function (receipt) {
+        return receipt;
+        // let TxHash = receipt.transactionHash;
+      });
+
+      console.log(burn)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const pause = async () => {
+    try {
+      let _toAdd = "0xD8226506f1d2159a9d041402801947DC5e9F7492";
+      let _amount = 100000000000000000000;
+      let tokenRes = await getTokenInfo("0xFA965E021b455deDF99f775445A1d1EBA695bf72");
+      console.log("token Res: ", tokenRes);
+
+      let tokContract = await getTokenContract("0xFA965E021b455deDF99f775445A1d1EBA695bf72")
+      let pause = await tokContract.methods
+      .pause()
+      .send({ from: walletAddress })
+      .then(function (receipt) {
+        return receipt;
+        // let TxHash = receipt.transactionHash;
+      });
+
+      console.log(pause)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const unpause = async () => {
+    try {
+      let _toAdd = "0xD8226506f1d2159a9d041402801947DC5e9F7492";
+      let _amount = 100000000000000000000;
+      let tokenRes = await getTokenInfo("0xFA965E021b455deDF99f775445A1d1EBA695bf72");
+      console.log("token Res: ", tokenRes);
+
+      let tokContract = await getTokenContract("0xFA965E021b455deDF99f775445A1d1EBA695bf72")
+      let unpause = await tokContract.methods
+      .unpause()
+      .send({ from: walletAddress })
+      .then(function (receipt) {
+        return receipt;
+        // let TxHash = receipt.transactionHash;
+      });
+
+      console.log(unpause)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
 
   const onCreateNFT = async () => {
     try {
@@ -128,8 +217,8 @@ function CreateNft(props) {
       };
       // let addRes = await createNFTAsset(auth_token, data);
       // if (addRes.status) {
-        console.log("Successfully added an account!");
-        let deployRes =
+      console.log("Successfully added an account!");
+      let deployRes =
         await deployERC1155(
           nftName,
           "https://3suite-nft-test.infura-ipfs.io/ipfs/Qme7NgNd2Cin6mvYFcHtvtHphqYnMQa4ZfJ5pz2CrT9EXa/",
@@ -138,19 +227,19 @@ function CreateNft(props) {
           [nftName + " - 01"]
         );
 
-        console.log("deploy Res: ", deployRes);
-        if (deployRes && deployRes.transactionHash) {
-          console.log(
-            "Successfully created an asset: ",
-            deployRes.transactionHash
-          );
-          navigate("/portfolio");
-        } else {
-          console.log("Failed to create an asset!");
-        }
+      console.log("deploy Res: ", deployRes);
+      if (deployRes && deployRes.transactionHash) {
+        console.log(
+          "Successfully created an asset: ",
+          deployRes.transactionHash
+        );
+        navigate("/portfolio");
+      } else {
+        console.log("Failed to create an asset!");
+      }
       // } else {
-    //     console.log("Failed to create an asset!");
-    //   }
+      //     console.log("Failed to create an asset!");
+      //   }
     } catch (error) {
       console.log("Error while creating NFT!");
       return false;
@@ -297,7 +386,7 @@ function CreateNft(props) {
             Suggested: 0%, 10%, 20%, 30%. Maximum is 50%
           </div> */}
           {/* <input placeholder="10" className="textfield-input" /> */}
-          <button className="cnt-wallet" style={{ width: "150px" }} onClick={onCreateNFT}>
+          <button className="cnt-wallet" style={{ width: "150px" }} onClick={mint}>
             Create NFT
           </button>
         </div>
