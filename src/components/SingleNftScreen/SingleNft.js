@@ -12,12 +12,18 @@ import NFT12 from "../../assets/images/n10.jpg";
 import { web3GlobalContext } from "../../context/global-context";
 import Web3 from "web3";
 import { getAssetByID, getRelevantAssets } from "../../services/APIManager";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import LoadingGif from "../../assets/images/loading.gif";
 import NotFound from "../../assets/images/notFound.png"
+import NFT5 from "../../assets/images/n5.jpg";
+import NFT6 from "../../assets/images/n6.jpg";
+import Image1 from "../../assets/images/s1.jpg";
+import NFT8 from "../../assets/images/n8.jpg";
+
 
 function SingleNft(props) {
   const { state } = useLocation();
+  const navigate = useNavigate();
   const [asset, setAsset] = useState();
   const [moreAssets, setMoreAssets] = useState([]);
   const [ownerAddress, setOwnerAddress] = useState();
@@ -26,6 +32,10 @@ function SingleNft(props) {
   const [assetType, setAssetType] = useState("");
 
   const { walletAddress, chainGlobal } = useContext(web3GlobalContext);
+  function onViewMoreClick() {
+    navigate(`/explore`, { state: "nft" });
+  }
+
 
   useEffect(() => {
     if (assetSource) {
@@ -177,20 +187,100 @@ function SingleNft(props) {
           {/* More Like This Section */}
           <div className="more-like">
             <div className="more-head">More Like This:</div>
-            <div className="more-data">
-              {moreAssets?.map((item, index) => {
-                return (
-                  <div className="nft-card">
-                    <img src={Image} alt="" className="nft-img" />
-                    <div className="desc-sec">
-                      <div className="name">{item.name}</div>
-
-                      <div className="owned">0.765ETH</div>
-                    </div>
-                  </div>
-                );
-              })}
+            <div className='nft-colln'>
+        <div className="nft-card">
+        <img src={NFT5} alt="" className="nft-img" />
+        <div className="desc-sec">
+          <div className="name">NFT Name / Anything</div>
+          <div className="buy-btn">Mint</div>
+        </div>
+        <div className="desc-sec">
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <img src={Image3} alt="" className="user-img" />
+            <div>
+              <div className="owned">Owned By</div>
+              <div className="creator-name">Creator name</div>
             </div>
+          </div>
+          <div>
+            <div className="owned">Price</div>
+            <div className="creator-name">2.75ETH</div>
+          </div>
+        </div>
+        <div style={{ marginTop: 8 }} />
+      </div>
+      <div className="nft-card">
+        <img src={NFT6} alt="" className="nft-img" />
+        <div className="desc-sec">
+          <div className="name">NFT Name / Anything</div>
+          <div className="buy-btn">Mint</div>
+        </div>
+        <div className="desc-sec">
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <img src={Image2} alt="" className="user-img" />
+            <div>
+              <div className="owned">Owned By</div>
+              <div className="creator-name">Creator name</div>
+            </div>
+          </div>
+          <div>
+            <div className="owned">Price</div>
+            <div className="creator-name">2.75ETH</div>
+          </div>
+        </div>
+        <div style={{ marginTop: 8 }} />
+
+      </div>
+        <div className="nft-card">
+        <img src={NFT7} alt="" className="nft-img" />
+        <div className="desc-sec">
+          <div className="name">NFT Name / Anything</div>
+          <div className="buy-btn">Mint</div>
+        </div>
+        <div className="desc-sec">
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <img src={Image1} alt="" className="user-img" />
+            <div>
+              <div className="owned">Owned By</div>
+              <div className="creator-name">Creator name</div>
+            </div>
+          </div>
+          <div>
+            <div className="owned">Price</div>
+            <div className="creator-name">2.75ETH</div>
+          </div>
+        </div>
+        <div style={{ marginTop: 8 }} />
+
+      </div>
+      <div className="nft-card">
+        <img src={NFT8} alt="" className="nft-img" />
+        <div className="desc-sec">
+          <div className="name">NFT Name / Anything</div>
+          <div className="buy-btn">Mint</div>
+        </div>
+        <div className="desc-sec">
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <img src={Image4} alt="" className="user-img" />
+            <div>
+              <div className="owned">Owned By</div>
+              <div className="creator-name">Creator name</div>
+            </div>
+          </div>
+          <div>
+            <div className="owned">Price</div>
+            <div className="creator-name">2.75ETH</div>
+          </div>
+        </div>
+        <div style={{ marginTop: 8 }} />
+
+      </div>
+        </div>
+        <div className="view-btn">
+        <button className="view-more" onClick={onViewMoreClick}>
+          View More <span style={{marginLeft:5}}>  &rarr; </span>
+        </button>       
+      </div>
           </div>
         </div>
 

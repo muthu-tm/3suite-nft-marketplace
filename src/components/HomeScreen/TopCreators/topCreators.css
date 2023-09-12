@@ -93,4 +93,14 @@ margin-bottom: 25px;
     .view-more{
         margin-right: 20px;
     }
+    .creator-img {
+        width: 35px!important;
+        height: 35px!important;
+        border-radius: 8px;
+    }
+    .view-btn{
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+    }
 }

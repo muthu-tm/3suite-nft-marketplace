@@ -34,11 +34,27 @@ function Profile(props) {
   const { walletAddress, chainGlobal, userId } = useContext(web3GlobalContext);
   const [userData, setUserData] = useState();
   const [userCreated, setUserCreated] = useState([]);
-  const [userOwned, setUserOwned] = useState([]);
+  // const [userOwned, setUserOwned] = useState([]);
 
   useEffect(() => {
     getUserdata();
   }, [userId]);
+
+
+const user_created = [
+  {id:1, image : `${NFT11}` , name :"Atlasian"},
+  {id:2, image : `${NFT12}` , name :"Starwar"},
+  {id:3, image : `${NFT9}` , name :"Cosmos"},
+  {id:4, image : `${NFT6}` , name :"SPacewar"},
+]
+const userOwned = [
+  {id:1, image : `${NFT2}` , name :"Avatar"},
+  {id:2, image : `${NFT3}` , name :"Kaybe"},
+  {id:3, image : `${NFT5}` , name :"Masko"},
+]
+const userSale = [
+  {id:1, image : `${NFT2}` , name :"Avatar"},
+]
 
   const getUserdata = async () => {
     try {
@@ -57,7 +73,7 @@ function Profile(props) {
 
       setUserData(userRes);
       setUserCreated(assetRes.data);
-      setUserOwned(ownAssetRes.data);
+      // setUserOwned(ownAssetRes.data);
 
       console.log("userRes", userRes);
     } catch (e) {
@@ -109,9 +125,9 @@ function Profile(props) {
           </span>
         </div>
       </div>
-      <div style={{ display: "flex", alignItems: "center", margin: "5px 0 0" }}>
+      <div className="mob-res" style={{ display: "flex", alignItems: "center", margin: "5px 0 0" }}>
         <div className="nft-desc" style={{ marginTop: 0, color: "#fff", fontSize: 14 }}>
-          @{userData?.data?.user_id}
+          @vaishu_shann
         </div>
         <div style={{ marginLeft: 5 }} />
         <IconContext.Provider
@@ -182,11 +198,11 @@ function Profile(props) {
 
         {acTab === "1" && (
           <div className="owned-sec">
-            {userCreated?.map((item, index) => {
+            {user_created?.map((item, index) => {
               return (
 
                 <div className="nft-card" onClick={() => moveSingleNFTPage(item.id)}>
-                  <img src={isValidUrl(item.image) ?item.image : NotFound } alt="" className="nft-img" />
+                  <img src={item.image  } alt="" className="nft-img" />
                   <div className="desc-sec">
                     <div>
                       <div className="name">{item.name}</div>
@@ -204,7 +220,7 @@ function Profile(props) {
             {userOwned?.map((item, index) => {
               return (
                 <div className="nft-card" style={{  margin: "1px 20px 20px 0" }}>
-                  <img src={isValidUrl(item.image) ?item.image : NotFound } alt="" className="nft-img" />
+                  <img src={item.image  } alt="" className="nft-img" />
                   <div className="desc-sec">
 
                     <div className="name">{item.name}</div>
@@ -218,11 +234,10 @@ function Profile(props) {
         )}
         {acTab === "3" && (
           <div className="owned-sec">
-            {userOwned?.map((item, index) => {
-              if (item.status == 3 || item.status == 4) {
+            {userSale?.map((item, index) => {
                 return (
                   <div className="nft-card" style={{margin: "1px 20px 20px 0" }}>
-                    <img src={isValidUrl(item.image) ?item.image : NotFound } alt="" className="nft-img" />
+                    <img src={item.image  } alt="" className="nft-img" />
                     <div className="desc-sec">
                       <div className="name">{item.name}</div>
                       <div className="owned">0.753ETH</div>
@@ -251,13 +266,13 @@ function Profile(props) {
                     </div>
                   </div>
                 );
-              }
+           
             })}
           </div>
         )}
 
         {acTab === "4" && (
-          <div style={{ width: "80%" }}>
+          <div className="activity-width">
             <div className="single-activity">
               <img src={Image1} alt="" className="act-img" />
               <div className="act-data">

@@ -33,3 +33,15 @@ font-size: 17px;
 font-size: 500;
 color: #fff;
 }
+@media screen and (max-width:960px) {
+    .single-cat{
+        width: 43%;
+        margin: auto;
+    }
+    .cat-img{
+        height: 125px;
+    }
+    .exp-cat{
+        padding:0 10px;
+    }
+}

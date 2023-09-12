@@ -168,4 +168,27 @@
     .exp-sec {
         justify-content: center;
     }
+    .single-exp {
+        width: 48%;
+        cursor: pointer;
+        margin: 40px auto 20px;
+    }
+    .exp-img{
+        height: 200px;
+    }
+    .user-img{
+        display: none;
+    }
+    .head-text-h{
+        font-size: 26px;
+    }
+    .filterBtn{
+        width: 100px!important;
+    }
+    .f-text{
+        font-size: 11px;
+    }
+    .explore{
+        padding: 10px;
+    }
 }

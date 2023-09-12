@@ -53,6 +53,7 @@ function Navbar(props) {
     setUserId,
     setUserName,
   } = useContext(web3GlobalContext);
+  
   const [authorizationToken, setAuthorizationToken] = useState(
     localStorage.getItem("auth_token")
   );

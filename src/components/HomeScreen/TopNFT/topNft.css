@@ -12,3 +12,13 @@
     width: 100%;
     margin:30px auto;
 }
+@media screen and (max-width:960px) {
+    .t-nft{
+        padding: 15px;
+    }
+    .nft-colln{
+        display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+    }
+}

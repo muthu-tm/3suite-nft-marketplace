@@ -210,9 +210,14 @@ align-items: center;
 .power-by .sub-text {
   width: auto;
 }
-
+.copyRights{
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
 .copyRights .sub-text {
-  padding-left: 20px;
+  /* padding-left: 20px; */
 }
 }
 

@@ -60,7 +60,9 @@
     height: 200px;
     margin-top: 1px;
 }
-
+.activity-width{
+    width: 80%;
+}
 .head-text {
     font-size: 16px;
     font-weight: 400;
@@ -147,7 +149,7 @@ text-align: center;
         flex-direction: column;
         justify-content: space-evenly;
         align-items: baseline;
-        margin: 50px auto;
+        margin: 50px auto 10px;
         width: 90%;
     }
     .user-name{
@@ -172,9 +174,37 @@ text-align: center;
     }
     .tab-head {
         width: 90%;
-        margin: auto;
+        margin: auto auto 20px;
+        display: flex;
+        flex-direction: row;
+        padding: 8px;
+        height: auto;
     }
     .head-text{
         font-size: 12px;
+        margin-bottom: 0;
+        margin-right: 10px;
+    }
+    .head-text-active{
+        margin-bottom: 0;
+        margin-right: 0;
+        font-size: 12px;
+    }
+    .mob-res{
+        margin: 10px 15px 10px!important;
+    }
+    .owned-sec .nft-card{
+        width: 80%;
+    margin: 10px auto!important;
+    }
+    .activity-width{
+        width: auto;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .tab-sec{
+        display: flex;
+        flex-direction: column;
     }
 }
