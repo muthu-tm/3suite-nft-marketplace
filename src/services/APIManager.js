@@ -306,3 +306,24 @@ export const getRelevantAssets = async (tags, asset_id, filter) => {
     return;
   }
 };
+
+
+export const createNFTAsset = async (auth_token, data) => {
+  const config = {
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${auth_token}`,
+    },
+    method: "POST",
+  };
+  try {
+    const response = await getAPIData(config, "nft/upload-metadata")
+    let result = await response.json();
+    console.log("Create NFT - ", result);
+    return result;
+  } catch (err) {
+    console.log(err, "error");
+    return;
+  }
+};
