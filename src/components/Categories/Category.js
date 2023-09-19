@@ -1,10 +1,8 @@
 import React, { useContext,useState,useEffect } from "react";
 import "./category.css";
 import Heading from "../../container/Heading/Heading";
-import Art from "../../assets/images/art.jpg";
-import Photography from "../../assets/images/photography.jpg";
-import Music from "../../assets/images/music.png";
-import Gaming from "../../assets/images/gaming.png";
+import NotFound from "../../assets/images/notFound.png"
+
 import { web3GlobalContext } from "../../context/global-context";
 import { getAppConfig } from "../../services/APIManager";
 import { useNavigate } from "react-router-dom";
@@ -43,7 +41,7 @@ function Category() {
       return(
 
          <div className="single-cat" style={{display:index>3?"none":""}}>
-          <img src={item.img} alt="" className="cat-img" />
+          <img src={item.img ? item.image : NotFound} alt="" className="cat-img" />
           <div className="cat-name">{item.name}</div>
         </div>
       )

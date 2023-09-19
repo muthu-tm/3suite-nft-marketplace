@@ -29,8 +29,8 @@ function Footer(props) {
       <div style={{ marginBottom: 10 }} />
 
       <div className="copyRights">
-        <div className="sub-text">footer.copyrights.com</div>
-        <div className="sub-text">support@godl.com</div>
+        <div className="sub-text">All rights reserved | 3Suite 2023</div>
+        <div className="sub-text">contact@3suite.tech</div>
       </div>
       <div style={{ marginBottom: 10 }} />
     </div>
