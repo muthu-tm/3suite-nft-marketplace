@@ -1,4 +1,4 @@
-import { TOKEN_CONTRACT } from "../contracts-abi/TokenNew";
+import { TOKEN_CONTRACT } from "../contracts-abi/Token";
 import { NFT_CONTRACT } from "../contracts-abi/NFTToken";
 import { createContractObject, createWeb3Object, getConnectedWalletAddress } from "./web3-services";
 
